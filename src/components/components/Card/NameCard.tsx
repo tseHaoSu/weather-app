@@ -5,6 +5,7 @@ const NameCard = () => {
   const name = useInputQueryStore((state) => state.inputQuery).userName;
   const [greeting, setGreeting] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const smileIcon = "😎";
 
   useEffect(() => {
     // Get current hour
@@ -44,7 +45,8 @@ const NameCard = () => {
       <div className="flex justify-between items-start">
         <div>
           <h2 className="text-3xl font-bold mb-2">
-            {greeting}, {name || ""}!
+            {smileIcon} {greeting},
+            <p className="block mt-1 ml-9">{name || "Guest"}!</p>
           </h2>
         </div>
         <div className="text-right">

@@ -23,7 +23,7 @@ const SkinTypeCard = () => {
   const icon = skinTypeIcons[skinTypeLower as SkinTypeKey] || "?";
 
   return (
-    <div className="bg-gradient-to-r from-teal-500 to-indigo-600 rounded-lg shadow-lg p-6 text-white mx-auto h-full w-full">
+    <div className="bg-gradient-to-r from-teal-500 to-indigo-600 p-6 h-full w-full">
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex items-center gap-2 mb-2">

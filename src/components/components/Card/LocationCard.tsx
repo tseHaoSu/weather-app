@@ -6,12 +6,12 @@ const LocationCard = () => {
 
   // Map icon based on location type (city vs country)
   const getLocationIcon = () => {
-    // Simple detection - you can enhance this logic
+    // Simple detection - can be enhanced
     return "📍"; // Default location pin
   };
 
   return (
-    <div className="bg-gradient-to-r from-amber-500 to-pink-600 rounded-lg shadow-lg p-6 text-white  mx-auto h-full w-full">
+    <div className="bg-gradient-to-r from-amber-500 to-pink-600 p-6  h-full w-full">
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex items-center gap-2 mb-2">
