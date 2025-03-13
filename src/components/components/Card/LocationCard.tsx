@@ -22,7 +22,13 @@ const LocationCard = () => {
         <div className="mt-auto">
           <p className="text-xs text-amber-200 font-medium">
             Current UV Level:
-            <span className="font-bold">
+            <span className="font-bold ml-2">
+              <UVIndex />
+            </span>
+          </p>
+          <p className="text-xs text-amber-200 font-medium">
+            {location}'s Max UV Level:
+            <span className="font-bold ml-2">
               <UVIndex />
             </span>
           </p>

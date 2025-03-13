@@ -13,6 +13,7 @@ import NameCard from "../Card/NameCard";
 import SkinTypeCard from "../Card/SkinCard";
 import ModeToggle from "../Theme/ModeToggle";
 import ClothingCard from "../Card/ClothingCard";
+import DateTimePicker from "../Card/DateTimePicker";
 
 const Page = () => {
   return (
@@ -44,7 +45,7 @@ const Page = () => {
               <ClothingCard />
             </CardContainer>
             <CardContainer>
-              <SkinTypeCard />
+              <DateTimePicker />
             </CardContainer>
           </div>
           {/* Third row - map and form with matching height */}
