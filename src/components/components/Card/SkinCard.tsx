@@ -3,7 +3,7 @@ import SunScreenCalculation from "./SunScreenCalculation";
 
 const SkinTypeCard = () => {
   const skinType =
-    useInputQueryStore((state) => state.inputQuery).skinType || "Unknown";
+    useInputQueryStore((state) => state.inputQuery).skinType || "Dry";
 
   type SkinTypeKey = "normal" | "dry" | "oily" | "combination" | "sensitive";
 
@@ -33,11 +33,11 @@ const SkinTypeCard = () => {
         </div>
         <div className="mt-auto">
           <p className="text-xs text-blue-200 font-medium">
-            My skin type is: <span className="font-bold">{skinType}</span>
+            My skin type is: <span className="font-bold text-xl">{skinType}</span>
           </p>
-          <p className="text-xs text-blue-200 font-medium">
-            Recommended Sunscreen{" "}
-            <span className="font-bold">
+          <p className="text-xs text-blue-200 font-large">
+            Recommended Sunscreen Amount: {" "}
+            <span className="font-bold text-xl">
               <SunScreenCalculation />
             </span>
           </p>
