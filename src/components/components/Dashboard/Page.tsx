@@ -1,12 +1,5 @@
+import Map from "@/components/components/Map";
 import { AppSidebar } from "@/components/components/SideBar/AppSideBar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -14,12 +7,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Card from "../Card/Form";
-import useInputQueryStore from "@/store/store";
+import LocationCard from "../Card/LocationCard";
+import NameCard from "../Card/NameCard";
+import SkinTypeCard from "../Card/SkinCard";
 import Status from "../Card/Status";
+import ModeToggle from "../Theme/ModeToggle";
 
 const Page = () => {
-
-  const inputQuery = useInputQueryStore((state) => state.inputQuery);
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -27,30 +21,32 @@ const Page = () => {
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="flex-1"></div>
+          <ModeToggle />
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 w-full">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 ">
-            <Status item={inputQuery.userName} />
-            <Status item={inputQuery.skinType} />
-            <Status item={inputQuery.location} />
+          {/* First row - equal height cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-64">
+            <Status className="h-full">
+              <NameCard />
+            </Status>
+            <Status className="h-full">
+              <SkinTypeCard />
+            </Status>
+            <Status className="h-full">
+              <LocationCard />
+            </Status>
           </div>
-          <div className="grid auto-rows-min gap-4  ">
-            <Status item={inputQuery.location} />
+
+          {/* Second row - map and form with matching height */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[calc(100vh-320px)] min-h-[400px]">
+            <Status className="md:col-span-2 h-full">
+              <Map />
+            </Status>
+            <Status className="h-full">
+              <Card />
+            </Status>
           </div>
-          <Card />
         </div>
       </SidebarInset>
     </SidebarProvider>

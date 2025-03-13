@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import useInputQueryStore from "@/store/store";
+import * as React from "react";
 import { toast } from "sonner";
 
 interface FormProps {
@@ -36,6 +36,8 @@ const CardWithForm = () => {
   const [name, setLocalName] = React.useState("");
   const [skinType, setLocalSkinType] = React.useState("");
   const [location, setLocalLocation] = React.useState("");
+
+  // Example usage
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,7 +63,7 @@ const CardWithForm = () => {
   };
 
   return (
-    <Card className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
+    <Card className="w-full h-full flex flex-col rounded-xl bg-muted/50 ">
       <CardHeader>
         <CardTitle>Let us know more about you!</CardTitle>
         <CardDescription>
@@ -69,9 +71,13 @@ const CardWithForm = () => {
           and UV info.{" "}
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <form id="user-form" onSubmit={handleSubmit}>
-          <div className="grid w-full items-center gap-6">
+      <CardContent className="flex-grow overflow-y-auto">
+        <form
+          id="user-form"
+          onSubmit={handleSubmit}
+          className="h-full flex flex-col"
+        >
+          <div className="flex flex-col w-full items-start gap-6 flex-grow">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Your Name</Label>
               <Input
@@ -111,22 +117,28 @@ const CardWithForm = () => {
                   <SelectItem value="New South Wales">
                     New South Wales (NSW)
                   </SelectItem>
-                  <SelectItem value="Victoria"> (VIC)</SelectItem>
-                  <SelectItem value="Queensland"> (QLD)</SelectItem>
-                  <SelectItem value="Western Australia"> (WA)</SelectItem>
-                  <SelectItem value="South Australia"> (SA)</SelectItem>
-                  <SelectItem value="Tasmania"> (TAS)</SelectItem>
-                  <SelectItem value="Australian Capital Territory">
-                    Australian Capital Territory (ACT)
+                  <SelectItem value="Victoria">Victoria</SelectItem>
+                  <SelectItem value="Queensland">Queensland</SelectItem>
+                  <SelectItem value="Western Australia">
+                    Western Australia
                   </SelectItem>
-                  <SelectItem value="nt">Northern Territory (NT)</SelectItem>
+                  <SelectItem value="South Australia">
+                    South Australia
+                  </SelectItem>
+                  <SelectItem value="Tasmania"> Tasmania</SelectItem>
+                  <SelectItem value="Australian Capital Territory">
+                    Australian Capital Territory
+                  </SelectItem>
+                  <SelectItem value="Northern Territory">
+                    Northern Territory (NT)
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between mt-auto">
         <Button type="submit" form="user-form">
           Submit
         </Button>

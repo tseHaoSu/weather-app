@@ -1,11 +1,16 @@
-import React from "react";
-
-interface StatusProps {
+interface Props {
   item?: string;
+  children?: React.ReactNode;
+  className?: string;
 }
 
-const Status = ({ item }: StatusProps) => {
-  return <div className="aspect-video rounded-xl bg-muted/50">{item}</div>;
+const Status = ({ item, children, className }: Props) => {
+  return (
+    <div className={className}>
+      {item && <div>{item}</div>}
+      {children}
+    </div>
+  );
 };
 
 export default Status;

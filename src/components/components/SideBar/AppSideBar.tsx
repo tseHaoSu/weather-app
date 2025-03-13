@@ -10,7 +10,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import ModeToggle from "../Theme/ModeToggle";
 
 // Menu items.
 const items = [
@@ -43,7 +42,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="p-4 border-r">
+    <Sidebar className="p-4 border-r-8 border-purple-200 dark:border-purple-900">
       <SidebarContent className="space-y-4">
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg font-semibold px-2 py-1">
@@ -67,9 +66,7 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <div className="mt-6 px-2">
-                <ModeToggle />
-              </div>
+              <div className="mt-6 px-2"></div>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
