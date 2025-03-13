@@ -44,7 +44,7 @@ const NameCard = () => {
       <div className="flex justify-between items-start">
         <div>
           <h2 className="text-3xl font-bold mb-2">
-            {greeting}, {name || "Guest"}!
+            {greeting}, {name || ""}!
           </h2>
         </div>
         <div className="text-right">

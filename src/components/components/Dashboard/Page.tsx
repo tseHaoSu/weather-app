@@ -1,4 +1,4 @@
-import Map from "@/components/components/Map";
+import Map from "@/components/components/Map/Map";
 import { AppSidebar } from "@/components/components/SideBar/AppSideBar";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -37,7 +37,6 @@ const Page = () => {
               <LocationCard />
             </Status>
           </div>
-
           {/* Second row - map and form with matching height */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[calc(100vh-320px)] min-h-[400px]">
             <Status className="md:col-span-2 h-full">
