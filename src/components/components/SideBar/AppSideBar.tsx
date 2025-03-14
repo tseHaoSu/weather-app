@@ -46,7 +46,7 @@ export function AppSidebar() {
       <SidebarContent className="space-y-4">
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg font-semibold px-2 py-1">
-            Application
+            UVision
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-2">
             <SidebarMenu className="space-y-1">
