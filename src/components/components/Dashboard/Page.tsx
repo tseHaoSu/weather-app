@@ -44,7 +44,7 @@ const Page = () => {
               <ClothingCard />
             </CardContainer>
             <CardContainer>
-              <Form />
+              <SkinTypeCard />
             </CardContainer>
           </div>
           {/* Third row - map and form with matching height */}

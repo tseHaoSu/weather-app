@@ -37,7 +37,7 @@ const CardWithForm = () => {
   const [skinType, setLocalSkinType] = React.useState("");
   const [location, setLocalLocation] = React.useState("");
 
-  // Example usage
+  //
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
