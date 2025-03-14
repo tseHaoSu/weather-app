@@ -12,7 +12,6 @@ import useLocationUV from "../Utils/useLocationUV";
 const CarouselDemo = () => {
 
   const {maxUVIndex} = useLocationUV();
-  console.log(maxUVIndex);
   const recommendations = ProtectionRec(typeof maxUVIndex === 'number' ? maxUVIndex : parseInt(maxUVIndex));
   const recommendationItems = [
     { title: "Risk Level", detail: recommendations.riskLevel },

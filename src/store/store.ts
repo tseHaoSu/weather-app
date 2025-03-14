@@ -40,11 +40,10 @@ const useInputQueryStore = create<InputQueryStore>()(
         set((state) => ({
           inputQuery: { ...state.inputQuery, maxUV: maxUV },
         })),
-        setUVIndex: (UVIndex: number) => {
-          set((state) => ({
-            inputQuery: { ...state.inputQuery, UVIndex: UVIndex },
-          }))
-        }
+      setUVIndex: (UVIndex: number) =>
+        set((state) => ({
+          inputQuery: { ...state.inputQuery, UVIndex: UVIndex },
+        })),
     }),
     {
       name: "input-query-storage", // unique name for the localStorage key
