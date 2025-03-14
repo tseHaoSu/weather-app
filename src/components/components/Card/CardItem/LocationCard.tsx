@@ -32,6 +32,8 @@ const LocationCard = () => {
 
   const locationUVIndex = getUVIndex();
   const locationMaxUVIndex = getMaxUVIndex();
+
+  
   // Map icon based on location type (city vs country)
   const getLocationIcon = () => {
     // Simple detection - can be enhanced
