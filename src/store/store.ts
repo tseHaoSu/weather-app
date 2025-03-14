@@ -6,6 +6,7 @@ interface InputQuery {
   skinType?: string;
   location?: string;
   maxUV?: number;
+  UVIndex?: number;
 }
 
 interface InputQueryStore {
@@ -14,6 +15,7 @@ interface InputQueryStore {
   setSkinType: (skinType: string) => void;
   setLocation: (location: string) => void;
   setMaxUV: (maxUV: number) => void;
+  setUVIndex: (UVIndex: number) => void;
 }
 
 const useInputQueryStore = create<InputQueryStore>()(
@@ -36,6 +38,11 @@ const useInputQueryStore = create<InputQueryStore>()(
         set((state) => ({
           inputQuery: { ...state.inputQuery, maxUV: maxUV },
         })),
+        setUVIndex: (UVIndex: number) => {
+          set((state) => ({
+            inputQuery: { ...state.inputQuery, UVIndex: UVIndex },
+          }))
+        }
     }),
     {
       name: "input-query-storage", // unique name for the localStorage key

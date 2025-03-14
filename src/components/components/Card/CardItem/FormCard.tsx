@@ -87,7 +87,7 @@ const CardWithForm = () => {
               />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="skin-type">Skin Type</Label>
+              <Label htmlFor="skin-type">Skin Tone</Label>
               <Select
                 value={skinType}
                 onValueChange={(value) => setLocalSkinType(value)}
@@ -96,11 +96,12 @@ const CardWithForm = () => {
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="normal">Normal</SelectItem>
-                  <SelectItem value="dry">Dry</SelectItem>
-                  <SelectItem value="oily">Oily</SelectItem>
-                  <SelectItem value="combination">Combination</SelectItem>
-                  <SelectItem value="sensitive">Sensitive</SelectItem>
+                  <SelectItem value="Type I">Type I (Very Fair)</SelectItem>
+                  <SelectItem value="Type II">Type II (Fair)</SelectItem>
+                  <SelectItem value="Type III">Type III (Medium Olive)</SelectItem>
+                  <SelectItem value="Type IV">Type IV (Tan Brown)</SelectItem>
+                  <SelectItem value="Type V">Type V (Dark Brown)</SelectItem>
+                  <SelectItem value="Type VI">Type VI (Deeply Pigmented/Black)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

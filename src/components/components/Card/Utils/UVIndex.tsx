@@ -3,7 +3,7 @@ import { locationCoordinates } from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 import { useEffect } from "react";
 
-const UVMaxIndex = () => {
+const UVIndex = () => {
   const currentLocation = useInputQueryStore(
     (state) => state.inputQuery.location
   );
@@ -17,23 +17,24 @@ const UVMaxIndex = () => {
     lng: coordinates.lon,
   });
 
-  const setMaxUV = useInputQueryStore((state) => state.setMaxUV);
-  const maxUV = useInputQueryStore((state) => state.inputQuery.maxUV);
+  const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
+  const UVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
 
-  //trigger event
   useEffect(() => {
-    if(data) {
-      setMaxUV(data.result.uv_max);
+    if (data) {
+      const roundedUVIndex = Math.round(data.result.uv);
+      setUVIndex(roundedUVIndex);
+    } else if (error) {
+      setUVIndex(5);
     }
-  },[data, setMaxUV]);
-  
+  }, [data, setUVIndex, error]);
 
   // Changed div to span for all return cases to avoid nesting issues
   if (isLoading) return <span>Loading UV data...</span>;
-  if (error) return <span>Error loading UV data</span>;
+  if (error) return <span>0</span>;
   if (!data) return null;
 
-  return <span>{maxUV}</span>;
+  return <span>{UVIndex}</span>;
 };
 
-export default UVMaxIndex;
+export default UVIndex;

@@ -1,5 +1,5 @@
 import useInputQueryStore from "@/store/store";
-import UVIndex from "./UVIndex";
+import UVIndex from "../Utils/UVIndex";
 
 const LocationCard = () => {
   const location = useInputQueryStore((state) => state.inputQuery.location);

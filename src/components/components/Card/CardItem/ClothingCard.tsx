@@ -6,7 +6,7 @@ const NameCard = () => {
   const fireIcon = "🔥";
 
   return (
-    <div className="bg-gradient-to-r to-blue-500 from-purple-600 rounded-lg p-6 h-full w-full flex flex-col">
+    <div className="bg-gradient-to-r from-purple-300 to-blue-400  rounded-lg p-6 h-full w-full flex flex-col">
       <div className="flex flex-col h-full">
         <div className="flex items-center gap-2 mb-2">
           <h2 className="text-3xl font-bold truncate">

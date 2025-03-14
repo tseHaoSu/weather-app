@@ -41,12 +41,12 @@ const NameCard = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg p-6 text-white mx-auto h-full w-full flex flex-col">
+    <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 h-full w-full flex flex-col">
       <div className="flex justify-between items-start">
         <div>
-          <h2 className="text-3xl font-bold mb-2">
+          <h2 className="text-xl font-bold mb-2">
             {smileIcon} {greeting},
-            <p className="block mt-1 ml-9">{name || "Guest"}!</p>
+            <p className="block mt-1 ml-6">{name || "Guest"}!</p>
           </h2>
         </div>
         <div className="text-right">
