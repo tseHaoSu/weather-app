@@ -27,7 +27,7 @@ const LocationCard = () => {
             </span>
           </p>
           <p className="text-xs text-amber-200 font-medium">
-            {location}'s Max UV Level:
+             The max UV level for {location} is:
             <span className="font-bold ml-2">
               <UVIndex />
             </span>

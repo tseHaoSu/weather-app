@@ -17,6 +17,7 @@ const UVIndex = () => {
     lng: coordinates.lng,
   });
 
+
   const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
   const setMaxUV = useInputQueryStore((state) => state.setMaxUV);
   const UVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
@@ -30,14 +31,13 @@ const UVIndex = () => {
       setMaxUV(roundedMaxUVIndex);
     } else if (error) {
       setUVIndex(5);
+      setMaxUV(7);
     }
   }, [data, setUVIndex, error, setMaxUV]);
 
   // Changed div to span for all return cases to avoid nesting issues
   if (isLoading) return <span>Loading UV data...</span>;
-  if (!data) return null;
-
-  return <span>{UVIndex !== undefined ? UVIndex : 5}</span>;
+  return <span>{UVIndex}</span>;
 };
 
 export default UVIndex;
