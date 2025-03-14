@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -21,19 +20,16 @@ import * as React from "react";
 import { toast } from "sonner";
 
 interface FormProps {
-  name: string;
   skinType: string;
   location: string;
 }
 
 const CardWithForm = () => {
   // Global state
-  const setName = useInputQueryStore((state) => state.setName);
   const setSkinType = useInputQueryStore((state) => state.setSkinType);
   const setLocation = useInputQueryStore((state) => state.setLocation);
 
   // Local state
-  const [name, setLocalName] = React.useState("");
   const [skinType, setLocalSkinType] = React.useState("");
   const [location, setLocalLocation] = React.useState("");
 
@@ -43,21 +39,18 @@ const CardWithForm = () => {
     e.preventDefault();
 
     const formData: FormProps = {
-      name,
       skinType,
       location,
     };
 
-    setName(formData.name);
     setSkinType(formData.skinType);
     setLocation(formData.location);
 
     console.log(formData);
     toast.success("Form submitted successfully!", {
-      description: `Thank you, ${name}! Your preferences have been saved.`,
+      description: `Thank you! Your preferences have been saved.`,
     });
 
-    setLocalName("");
     setLocalSkinType("");
     setLocalLocation("");
   };
@@ -75,19 +68,11 @@ const CardWithForm = () => {
         <form
           id="user-form"
           onSubmit={handleSubmit}
-          className="h-full flex flex-col"
+          className="flex items-end gap-4"
         >
-          <div className="flex flex-col w-full items-start gap-6 flex-grow">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Your Name</Label>
-              <Input
-                id="name"
-                value={name}
-                onChange={(e) => setLocalName(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="skin-type">Skin Tone</Label>
+          <div className="flex w-full gap-4">
+            <div className="flex flex-col flex-1">
+              <Label htmlFor="skin-type" className="font-semibold">Choose your skin tone</Label>
               <Select
                 value={skinType}
                 onValueChange={(value) => setLocalSkinType(value)}
@@ -105,8 +90,8 @@ const CardWithForm = () => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="location">My Location</Label>
+            <div className="flex flex-col flex-1">
+              <Label htmlFor="location" className="font-semibold">Choose your Location</Label>
               <Select
                 value={location}
                 onValueChange={(value) => setLocalLocation(value)}
@@ -137,13 +122,13 @@ const CardWithForm = () => {
               </Select>
             </div>
           </div>
+          <CardFooter className="flex justify-end">
+            <Button type="submit" form="user-form">
+              Submit
+            </Button>
+          </CardFooter>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between mt-auto">
-        <Button type="submit" form="user-form">
-          Submit
-        </Button>
-      </CardFooter>
     </Card>
   );
 };

@@ -9,9 +9,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import ClothingCard from "../Card/CardItem/ClothingCard";
-import NameCard from "../Card/CardItem/NameCard";
-import RiskCard from "../Card/CardItem/RiskCard";
 import CardContainer from "../Card/Container/CardContainer";
 import ModeToggle from "../Theme/ModeToggle";
 
@@ -29,33 +26,24 @@ const Page = () => {
           </header>
           <div className="flex flex-col gap-4 p-4 w-full">
             {/* First row - equal height cards */}
-            <div className="grid md:grid-cols-3 gap-4 h-64">
-              <CardContainer>
-                <NameCard />
-              </CardContainer>
-              <CardContainer>
-                <SkinTypeCard />
-              </CardContainer>
-              <CardContainer>
-                <LocationCard />
+            <div className="grid md:grid-cols-1 gap-4 h-auto">
+              <CardContainer className="w-full">
+                <Form />
               </CardContainer>
             </div>
             {/* Second row - map and form with matching height */}
-            <div className="grid md:grid-cols-3 gap-4 h-64">
-              <CardContainer className="md:col-span-2">
-                <ClothingCard />
-              </CardContainer>
-              <CardContainer className="overflow-hidden p-0">
-                <RiskCard />
-              </CardContainer>
-            </div>
-            {/* Third row - map and form with matching height */}
-            <div className="grid md:grid-cols-3 gap-4 h-[calc(100vh-320px)] min-h-[400px]">
+            <div className="grid md:grid-cols-1 gap-4 h-64 w-full">
               <CardContainer className="md:col-span-2">
                 <Map />
               </CardContainer>
-              <CardContainer>
-                <Form />
+            </div>
+            {/* Third row - map and form with matching height */}
+            <div className="grid md:grid-cols-2 gap-4 h-auto min-h-[400px] w-full">
+              <CardContainer className="w-full flex-grow">
+                <SkinTypeCard />
+              </CardContainer>
+              <CardContainer className="w-full flex-grow">
+                <LocationCard />
               </CardContainer>
             </div>
           </div>
