@@ -41,7 +41,7 @@ const NameCard = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 h-full w-full flex flex-col">
+    <div className="bg-gradient-to-r from-purple-300 to-blue-400 p-6 h-full w-full flex flex-col">
       <div className="flex justify-between items-start">
         <div>
           <h2 className="text-xl font-bold mb-2">

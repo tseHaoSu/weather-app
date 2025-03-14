@@ -35,7 +35,7 @@ const SkinTypeCard = () => {
     };
 
   return (
-    <div className="bg-gradient-to-r from-teal-500 to-indigo-600 p-6 h-full w-full">
+    <div className="bg-gradient-to-r from-purple-300 to-blue-400 p-6 h-full w-full">
       <div className="flex flex-col justify-between h-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-2xl">{getSkinIcon()}</span>
@@ -43,15 +43,16 @@ const SkinTypeCard = () => {
         </div>
 
         <div className="mt-auto">
-          <p className="text-xs text-blue-200 font-medium">
-            My skin type is:{" "}
+          <p className="text-xs text-white font-medium">
+            My skin tone is:{" "}
             <span className="font-bold text-xl">{skinType}</span>
           </p>
-          <p className="text-xs text-blue-200">
+          <p className="text-xs text-white">
             Recommended Sunscreen Amount:{" "}
             <span className="font-bold text-xl">
-              {TotalSunScreen.toFixed(1)} teaspoons
+              {TotalSunScreen.toFixed(1)}{" "}
             </span>
+            teaspoons
           </p>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import Form from "@/components/components/Card/CardItem/FormCard";
-import LocationCard from "@/components/components/Card/CardItem/LocationCard";
 import SkinTypeCard from "@/components/components/Card/CardItem/SkinCard";
 import Map from "@/components/components/Map/Map";
 import { AppSidebar } from "@/components/components/SideBar/AppSideBar";
@@ -9,7 +8,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import ClothingCard from "../Card/CardItem/ClothingCard";
+import LocationCard from "../Card/CardItem/LocationCard";
 import NameCard from "../Card/CardItem/NameCard";
 import RiskCard from "../Card/CardItem/RiskCard";
 import CardContainer from "../Card/Container/CardContainer";
@@ -30,32 +29,29 @@ const Page = () => {
           <div className="flex flex-col gap-4 p-4 w-full">
             {/* First row - equal height cards */}
             <div className="grid md:grid-cols-3 gap-4 h-64">
-              <CardContainer>
-                <NameCard />
+              <CardContainer className="md:col-span-2">
+                <Form />
               </CardContainer>
               <CardContainer>
                 <SkinTypeCard />
               </CardContainer>
-              <CardContainer>
-                <LocationCard />
-              </CardContainer>
             </div>
             {/* Second row - map and form with matching height */}
             <div className="grid md:grid-cols-3 gap-4 h-64">
-              <CardContainer className="md:col-span-2">
-                <ClothingCard />
+              <CardContainer>
+                <LocationCard />
               </CardContainer>
               <CardContainer className="overflow-hidden p-0">
                 <RiskCard />
               </CardContainer>
+              <CardContainer>
+                <NameCard />
+              </CardContainer>
             </div>
             {/* Third row - map and form with matching height */}
             <div className="grid md:grid-cols-3 gap-4 h-[calc(100vh-320px)] min-h-[400px]">
-              <CardContainer className="md:col-span-2">
+              <CardContainer className="md:col-span-3">
                 <Map />
-              </CardContainer>
-              <CardContainer>
-                <Form />
               </CardContainer>
             </div>
           </div>

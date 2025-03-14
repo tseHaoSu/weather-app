@@ -8,7 +8,7 @@ interface Props {
 const CardContainer = ({ children, className = "" }: Props) => {
   return (
     <div
-      className={`transform transition duration-350 hover:scale-102 rounded-lg shadow-lg text-white  h-full w-full overflow-hidden ${className}`}
+      className={`rounded-lg shadow-lg text-white  h-full w-full overflow-hidden ${className}`}
     >
       {children}
     </div>

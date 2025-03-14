@@ -1,14 +1,19 @@
 export const locationCoordinates: {
   [key: string]: { lat: number; lng: number };
 } = {
-  "New South Wales": { lat: -33.8688, lng: 151.2093 }, // Sydney
-  Victoria: { lat: -37.8136, lng: 144.9631 }, // Melbourne
-  Queensland: { lat: -27.4698, lng: 153.0251 }, // Brisbane
-  "Western Australia": { lat: -31.9505, lng: 115.8605 }, // Perth
-  "South Australia": { lat: -34.9285, lng: 138.6007 }, // Adelaide
-  Tasmania: { lat: -42.8821, lng: 147.3272 }, // Hobart
-  "Australian Capital Territory": { lat: -35.2809, lng: 149.13 }, // Canberra
-  "Northern Territory": { lat: -12.4634, lng: 130.8456 }, // Darwin
+  Sydney: { lat: -33.8688, lng: 151.2093 },
+  Melbourne: { lat: -37.8136, lng: 144.9631 },
+  Brisbane: { lat: -27.4698, lng: 153.0251 },
+  Perth: { lat: -31.9505, lng: 115.8605 },
+  Adelaide: { lat: -34.9285, lng: 138.6007 },
+  "Gold Coast": { lat: -28.0167, lng: 153.4 },
+  Canberra: { lat: -35.2809, lng: 149.13 },
+  Newcastle: { lat: -32.9283, lng: 151.7817 },
+  Wollongong: { lat: -34.4331, lng: 150.8831 },
+  Hobart: { lat: -42.8821, lng: 147.3272 },
+  Darwin: { lat: -12.4634, lng: 130.8456 },
+  Cairns: { lat: -16.9186, lng: 145.7781 },
+  "Alice Springs": { lat: -23.698, lng: 133.8807 },
 };
 
 export const UVlevels: {
@@ -70,5 +75,5 @@ export const SkinToneFactor: { [key: string]: number } = {
   "Type III": 1,
   "Type IV": 0.85,
   "Type V": 0.85,
-  "Type VI": 0.75
+  "Type VI": 0.75,
 };

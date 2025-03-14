@@ -21,7 +21,9 @@ interface InputQueryStore {
 const useInputQueryStore = create<InputQueryStore>()(
   persist(
     (set) => ({
-      inputQuery: {},
+      inputQuery: {
+        location: "Melbourne",
+      },
       setName: (name: string) =>
         set((state) => ({
           inputQuery: { ...state.inputQuery, userName: name },

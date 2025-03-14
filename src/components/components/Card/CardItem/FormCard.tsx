@@ -62,6 +62,22 @@ const CardWithForm = () => {
     setLocalLocation("");
   };
 
+  const handleClearStore = () => {
+    // Reset all values in the store
+    setName("");
+    setSkinType("");
+    setLocation("");
+
+    // Also clear local state
+    setLocalName("");
+    setLocalSkinType("");
+    setLocalLocation("");
+
+    toast.info("All data cleared", {
+      description: "Your preferences have been reset.",
+    });
+  };
+
   return (
     <Card className="w-full h-full flex flex-col rounded-xl bg-muted/50 ">
       <CardHeader>
@@ -77,31 +93,39 @@ const CardWithForm = () => {
           onSubmit={handleSubmit}
           className="h-full flex flex-col"
         >
-          <div className="flex flex-col w-full items-start gap-6 flex-grow">
+          <div className="flex flex-row w-full items-start gap-6 flex-grow">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Your Name</Label>
               <Input
                 id="name"
                 value={name}
                 onChange={(e) => setLocalName(e.target.value)}
+                className="border-2 border-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-300"
               />
             </div>
-            <div className="flex flex-col space-y-1.5">
+            <div className="flex flex-col space-y-1.5 ">
               <Label htmlFor="skin-type">Skin Tone</Label>
               <Select
                 value={skinType}
                 onValueChange={(value) => setLocalSkinType(value)}
               >
-                <SelectTrigger id="skin-type">
+                <SelectTrigger
+                  id="skin-type"
+                  className="border-2 border-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-300"
+                >
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
                   <SelectItem value="Type I">Type I (Very Fair)</SelectItem>
                   <SelectItem value="Type II">Type II (Fair)</SelectItem>
-                  <SelectItem value="Type III">Type III (Medium Olive)</SelectItem>
+                  <SelectItem value="Type III">
+                    Type III (Medium Olive)
+                  </SelectItem>
                   <SelectItem value="Type IV">Type IV (Tan Brown)</SelectItem>
                   <SelectItem value="Type V">Type V (Dark Brown)</SelectItem>
-                  <SelectItem value="Type VI">Type VI (Deeply Pigmented/Black)</SelectItem>
+                  <SelectItem value="Type VI">
+                    Type VI (Deeply Pigmented/Black)
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -111,35 +135,39 @@ const CardWithForm = () => {
                 value={location}
                 onValueChange={(value) => setLocalLocation(value)}
               >
-                <SelectTrigger id="location">
+                <SelectTrigger
+                  id="location"
+                  className="border-2 border-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-300"
+                >
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="New South Wales">
-                    New South Wales (NSW)
-                  </SelectItem>
-                  <SelectItem value="Victoria">Victoria</SelectItem>
-                  <SelectItem value="Queensland">Queensland</SelectItem>
-                  <SelectItem value="Western Australia">
-                    Western Australia
-                  </SelectItem>
-                  <SelectItem value="South Australia">
-                    South Australia
-                  </SelectItem>
-                  <SelectItem value="Tasmania"> Tasmania</SelectItem>
-                  <SelectItem value="Australian Capital Territory">
-                    Australian Capital Territory
-                  </SelectItem>
-                  <SelectItem value="Northern Territory">
-                    Northern Territory (NT)
-                  </SelectItem>
+                  <SelectItem value="Sydney">Sydney</SelectItem>
+                  <SelectItem value="Melbourne">Melbourne</SelectItem>
+                  <SelectItem value="Brisbane">Brisbane</SelectItem>
+                  <SelectItem value="Perth">Perth</SelectItem>
+                  <SelectItem value="Adelaide">Adelaide</SelectItem>
+                  <SelectItem value="Gold Coast">Gold Coast</SelectItem>
+                  <SelectItem value="Canberra">Canberra</SelectItem>
+                  <SelectItem value="Newcastle">Newcastle</SelectItem>
+                  <SelectItem value="Wollongong">Wollongong</SelectItem>
+                  <SelectItem value="Hobart">Hobart</SelectItem>
+                  <SelectItem value="Darwin">Darwin</SelectItem>
+                  <SelectItem value="Cairns">Cairns</SelectItem>
+                  <SelectItem value="Alice Springs">Alice Springs</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between mt-auto">
+      <CardFooter className="flex justify-start gap-2 mt-auto">
+        <Button
+          onClick={handleClearStore}
+          className="border-red-300  hover:text-red-600"
+        >
+          Clear
+        </Button>
         <Button type="submit" form="user-form">
           Submit
         </Button>
