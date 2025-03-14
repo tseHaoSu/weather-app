@@ -1,8 +1,10 @@
 import useInputQueryStore from "@/store/store";
-import UVIndex from "../Utils/UVIndex";
+import useUVIndexSetup from "../Utils/UVIndex";
 
 const LocationCard = () => {
   const location = useInputQueryStore((state) => state.inputQuery.location);
+  const { UVIndex, isLoading } = useUVIndexSetup();
+  console.log(UVIndex)
 
   // Map icon based on location type (city vs country)
   const getLocationIcon = () => {
@@ -23,13 +25,13 @@ const LocationCard = () => {
           <p className="text-xs text-amber-200 font-medium">
             Current UV Level:
             <span className="font-bold ml-2">
-              <UVIndex />
+              {isLoading ? "Loading..." :  `${UVIndex}`}
             </span>
           </p>
           <p className="text-xs text-amber-200 font-medium">
-             The max UV level for {location} is:
+            The max UV level for {location} is:
             <span className="font-bold ml-2">
-              <UVIndex />
+             {isLoading ? "Loading..." :  `${UVIndex}`}
             </span>
           </p>
         </div>

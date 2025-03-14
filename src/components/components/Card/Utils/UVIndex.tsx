@@ -3,10 +3,11 @@ import { locationCoordinates } from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 import { useEffect } from "react";
 
-const UVIndex = () => {
+const useUVIndexSetup = () => {
   const currentLocation = useInputQueryStore(
     (state) => state.inputQuery.location
   );
+
   const coordinates =
     currentLocation && locationCoordinates[currentLocation]
       ? locationCoordinates[currentLocation]
@@ -17,27 +18,31 @@ const UVIndex = () => {
     lng: coordinates.lng,
   });
 
-
   const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
   const setMaxUV = useInputQueryStore((state) => state.setMaxUV);
   const UVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
 
   useEffect(() => {
+    console.log("Effect running with data:", data);
     if (data) {
-      //set the global store of the UV index and Max UV in dex
+      // Set the global store of the UV index and Max UV index
       const roundedUVIndex = Math.round(data.result.uv);
       const roundedMaxUVIndex = Math.round(data.result.uv_max);
+      console.log("Setting UV index to:", roundedUVIndex);
       setUVIndex(roundedUVIndex);
       setMaxUV(roundedMaxUVIndex);
     } else if (error) {
+      console.log("Error detected, using fallback values");
       setUVIndex(5);
       setMaxUV(7);
     }
   }, [data, setUVIndex, error, setMaxUV]);
 
-  // Changed div to span for all return cases to avoid nesting issues
-  if (isLoading) return <span>Loading UV data...</span>;
-  return <span>{UVIndex}</span>;
+  return {
+    UVIndex,
+    isLoading,
+    error,
+  };
 };
 
-export default UVIndex;
+export default useUVIndexSetup;
