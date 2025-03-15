@@ -12,6 +12,7 @@ import LocationCard from "../Card/CardItem/LocationCard";
 import RiskCard from "../Card/CardItem/RiskCard";
 import CardContainer from "../Card/Container/CardContainer";
 import ModeToggle from "../Theme/ModeToggle";
+import ReminderCard from "../Card/CardItem/ReminderCard";
 
 const Page = () => {
   return (
@@ -32,7 +33,7 @@ const Page = () => {
                 <Form />
               </CardContainer>
               <CardContainer>
-                <SkinTypeCard />
+                <ReminderCard />
               </CardContainer>
             </div>
             {/* Second row - map and form with matching height */}
@@ -43,9 +44,9 @@ const Page = () => {
               <CardContainer className="overflow-hidden p-0">
                 <RiskCard />
               </CardContainer>
-              {/* <CardContainer>
-                <NameCard />
-              </CardContainer> */}
+              <CardContainer>
+                <SkinTypeCard />
+              </CardContainer>
             </div>
             {/* Third row - map and form with matching height */}
             <div className="grid md:grid-cols-3 gap-4 h-[calc(100vh-320px)] min-h-[400px]">

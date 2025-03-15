@@ -10,9 +10,12 @@ import ProtectionRec from "../Utils/ProtectionRec";
 import useLocationUV from "../Utils/useLocationUV";
 
 const CarouselDemo = () => {
-
-  const {maxUVIndex} = useLocationUV();
-  const recommendations = ProtectionRec(typeof maxUVIndex === 'number' ? maxUVIndex : parseInt(maxUVIndex));
+  const { currentUVIndex } = useLocationUV();
+  const recommendations = ProtectionRec(
+    typeof currentUVIndex === "number"
+      ? currentUVIndex
+      : parseInt(currentUVIndex)
+  );
   const recommendationItems = [
     { title: "Risk Level", detail: recommendations.riskLevel },
     { title: "Clothing", detail: recommendations.clothing },
@@ -30,7 +33,7 @@ const CarouselDemo = () => {
               <div className="p-1 h-full">
                 <CardContent className="flex items-start justify-center p-4 h-full">
                   <span className="text-xl font-semibold text-white">
-                    {item.title}: 
+                    {item.title}:
                   </span>
                   <span className="text-xl font-semibold text-white ml-3">
                     {item.detail}
@@ -40,7 +43,7 @@ const CarouselDemo = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex justify-center gap-2 mt-15">
+        <div className="flex justify-center gap-2 mt-10">
           <CarouselPrevious className="static transform-none mx-0 bg-background hover:bg-muted border-none" />
           <CarouselNext className="static transform-none mx-0 bg-background hover:bg-muted border-none" />
         </div>

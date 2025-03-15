@@ -1,39 +1,38 @@
 import { SkinToneFactor, UVIndexFactor } from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 
-
 const SkinTypeCard = () => {
   const skinType =
-    useInputQueryStore((state) => state.inputQuery.skinType) ||
-    "Type III";
-  
-    const MaxUV = useInputQueryStore((state) => state.inputQuery.maxUV || 5);
-    console.log(MaxUV);
+    useInputQueryStore((state) => state.inputQuery.skinType) || "Type III";
 
-    const TotalSunScreen = MaxUV * UVIndexFactor[MaxUV] * SkinToneFactor[skinType];
+  const currentUV =
+    useInputQueryStore((state) => state.inputQuery.UVIndex) || 5;
+  const roundedUVIndex = Math.round(currentUV);
+  const TotalSunScreen =
+    roundedUVIndex * UVIndexFactor[roundedUVIndex] * SkinToneFactor[skinType];
 
-    const getSkinIcon = () => {
-      // Extract the type number (Roman numeral) from the skin type string
-      const typeMatch = skinType.match(/Type\s([IVX]+)/i);
-      const typeNum = typeMatch ? typeMatch[1] : "III";
+  const getSkinIcon = () => {
+    // Extract the type number (Roman numeral) from the skin type string
+    const typeMatch = skinType.match(/Type\s([IVX]+)/i);
+    const typeNum = typeMatch ? typeMatch[1] : "III";
 
-      switch (typeNum) {
-        case "I":
-          return "👩🏻"; 
-        case "II":
-          return "👨🏼"; 
-        case "III":
-          return "👩🏽"; 
-        case "IV":
-          return "👨🏾"; 
-        case "V":
-          return "👩🏾"; 
-        case "VI":
-          return "👨🏿"; 
-        default:
-          return "👤"; 
-      }
-    };
+    switch (typeNum) {
+      case "I":
+        return "👩🏻";
+      case "II":
+        return "👨🏼";
+      case "III":
+        return "👩🏽";
+      case "IV":
+        return "👨🏾";
+      case "V":
+        return "👩🏾";
+      case "VI":
+        return "👨🏿";
+      default:
+        return "👤";
+    }
+  };
 
   return (
     <div className="bg-gradient-to-r from-purple-300 to-blue-400 p-6 h-full w-full">

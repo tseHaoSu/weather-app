@@ -36,8 +36,7 @@ const CardWithForm = () => {
   const [skinType, setLocalSkinType] = React.useState("");
   const [location, setLocalLocation] = React.useState("");
 
-  //
-
+  //handle submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -101,7 +100,7 @@ const CardWithForm = () => {
               >
                 <SelectTrigger
                   id="skin-type"
-                  className="border-2 border-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-300"
+                  className="border-2 border-blue-400 "
                 >
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
@@ -127,7 +126,7 @@ const CardWithForm = () => {
               >
                 <SelectTrigger
                   id="location"
-                  className="border-2 border-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-300"
+                  className="border-2 border-blue-400 "
                 >
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>

@@ -4,16 +4,10 @@ import useInputQueryStore from "@/store/store";
 import { useEffect } from "react";
 
 const useLocationUV = () => {
-  // Get location from store
   const location = useInputQueryStore((state) => state.inputQuery.location);
-
-  // State setters from store
-  const setCurrentUVIndex = useInputQueryStore(
-    (state) => state.setUVIndex
-  );
+  const setCurrentUVIndex = useInputQueryStore((state) => state.setUVIndex);
   const setMaxUVIndex = useInputQueryStore((state) => state.setMaxUV);
 
-  // Get coordinates based on location
   const coordinates =
     location && locationCoordinates[location]
       ? locationCoordinates[location]
@@ -25,18 +19,16 @@ const useLocationUV = () => {
     lng: coordinates.lng,
   });
 
-  // Process current UV index
   const getCurrentUVIndex = () => {
     if (isLoading) return "Loading...";
-    if (error) return "Error!";
+    if (error) return 5;
     if (data && data.result) return Number(data.result.uv.toFixed(1));
     return 5; // Default UV index
   };
 
-  // Process max UV index
   const getMaxUVIndex = () => {
     if (isLoading) return "Loading...";
-    if (error) return "Error!";
+    if (error) return 8.5; // Default UV index";
     if (data && data.result) return Number(data.result.uv_max.toFixed(1));
     return 8.5; // Default UV index
   };
