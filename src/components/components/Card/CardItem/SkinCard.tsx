@@ -6,7 +6,7 @@ const SkinTypeCard = () => {
     useInputQueryStore((state) => state.inputQuery.skinType) || "";
 
   const currentUV =
-    useInputQueryStore((state) => state.inputQuery.UVIndex) || 0;
+    useInputQueryStore((state) => state.inputQuery.UVIndex) || 1;
   const roundedUVIndex = Math.round(currentUV);
   const TotalSunScreen =
     roundedUVIndex * UVIndexFactor[roundedUVIndex] * SkinToneFactor[skinType];
