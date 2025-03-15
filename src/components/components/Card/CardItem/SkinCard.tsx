@@ -3,10 +3,10 @@ import useInputQueryStore from "@/store/store";
 
 const SkinTypeCard = () => {
   const skinType =
-    useInputQueryStore((state) => state.inputQuery.skinType) || "Type III";
+    useInputQueryStore((state) => state.inputQuery.skinType) || "";
 
   const currentUV =
-    useInputQueryStore((state) => state.inputQuery.UVIndex) || 5;
+    useInputQueryStore((state) => state.inputQuery.UVIndex) || 0;
   const roundedUVIndex = Math.round(currentUV);
   const TotalSunScreen =
     roundedUVIndex * UVIndexFactor[roundedUVIndex] * SkinToneFactor[skinType];
