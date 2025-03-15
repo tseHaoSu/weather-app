@@ -8,6 +8,7 @@ const SkinTypeCard = () => {
     "Type III";
   
     const MaxUV = useInputQueryStore((state) => state.inputQuery.maxUV || 5);
+    console.log(MaxUV);
 
     const TotalSunScreen = MaxUV * UVIndexFactor[MaxUV] * SkinToneFactor[skinType];
 

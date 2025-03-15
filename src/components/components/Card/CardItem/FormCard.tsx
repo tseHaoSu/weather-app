@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -94,15 +93,6 @@ const CardWithForm = () => {
           className="h-full flex flex-col"
         >
           <div className="flex flex-row w-full items-start gap-6 flex-grow">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Your Name</Label>
-              <Input
-                id="name"
-                value={name}
-                onChange={(e) => setLocalName(e.target.value)}
-                className="border-2 border-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-300"
-              />
-            </div>
             <div className="flex flex-col space-y-1.5 ">
               <Label htmlFor="skin-type">Skin Tone</Label>
               <Select

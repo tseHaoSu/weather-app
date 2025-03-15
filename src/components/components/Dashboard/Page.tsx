@@ -9,7 +9,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import LocationCard from "../Card/CardItem/LocationCard";
-import NameCard from "../Card/CardItem/NameCard";
 import RiskCard from "../Card/CardItem/RiskCard";
 import CardContainer from "../Card/Container/CardContainer";
 import ModeToggle from "../Theme/ModeToggle";
@@ -44,9 +43,9 @@ const Page = () => {
               <CardContainer className="overflow-hidden p-0">
                 <RiskCard />
               </CardContainer>
-              <CardContainer>
+              {/* <CardContainer>
                 <NameCard />
-              </CardContainer>
+              </CardContainer> */}
             </div>
             {/* Third row - map and form with matching height */}
             <div className="grid md:grid-cols-3 gap-4 h-[calc(100vh-320px)] min-h-[400px]">
