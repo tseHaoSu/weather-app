@@ -1,20 +1,20 @@
 import Form from "@/components/components/Card/CardItem/FormCard";
 import SkinTypeCard from "@/components/components/Card/CardItem/SkinCard";
 import Map from "@/components/components/Map/Map";
-import { AppSidebar } from "@/components/components/SideBar/AppSideBar";
+import { AppSidebar } from "@/components/components/SideBar/SideBar";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import LocationCard from "../Card/CardItem/LocationCard";
-import RiskCard from "../Card/CardItem/RiskCard";
-import CardContainer from "../Card/Container/CardContainer";
-import ModeToggle from "../Theme/ModeToggle";
-import ReminderCard from "../Card/CardItem/ReminderCard";
+import LocationCard from "../components/Card/CardItem/LocationCard";
+import RiskCard from "../components/Card/CardItem/RiskCard";
+import CardContainer from "../components/Card/Container/CardContainer";
+import ModeToggle from "../components/Theme/ModeToggle";
+import ReminderCard from "../components/Card/CardItem/ReminderCard";
 
-const Page = () => {
+const DashboardPage = () => {
   return (
     <div className="mx-auto max-w-[1400px]">
       <SidebarProvider>
@@ -61,4 +61,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default DashboardPage;
