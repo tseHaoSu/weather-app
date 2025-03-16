@@ -3,13 +3,23 @@ import useInputQueryStore from "@/store/store";
 
 const SkinTypeCard = () => {
   const skinType =
-    useInputQueryStore((state) => state.inputQuery.skinType) || "";
+    useInputQueryStore((state) => state.inputQuery.skinType) || "Type I";
 
   const currentUV =
     useInputQueryStore((state) => state.inputQuery.UVIndex) || 1;
-  const roundedUVIndex = Math.round(currentUV);
+
+    //prevent UV to 0
+  const roundedUVIndex = Math.max(1, Math.round(currentUV));
+  const uvFactor = UVIndexFactor[roundedUVIndex] || 0.6;
   const TotalSunScreen =
-    roundedUVIndex * UVIndexFactor[roundedUVIndex] * SkinToneFactor[skinType];
+    roundedUVIndex * uvFactor * SkinToneFactor[skinType];
+
+    console.log({
+      skinType,
+      roundedUVIndex,
+      skinFactor: SkinToneFactor[skinType],
+      uvFactor: UVIndexFactor[roundedUVIndex],
+    });
 
   const getSkinIcon = () => {
     // Extract the type number (Roman numeral) from the skin type string
