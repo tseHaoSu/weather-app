@@ -37,7 +37,7 @@ const DataPage = () => {
                   key={index}
                   src={src}
                   alt={`State image ${index + 1}`}
-                  className="w-full h-full  \rounded-2xl"
+                  className="w-full h-full rounded-2xl"
                 />
               ))}
             </div>
