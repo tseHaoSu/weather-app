@@ -1,6 +1,7 @@
-import { createBrowserRouter } from "react-router"; 
+import { createBrowserRouter } from "react-router";
 import LandingPage from "./components/pages/LandingPage";
 import DashboardPage from "./components/pages/DashboardPage";
+import DataPage from "./components/pages/DataPage";
 
 const router = createBrowserRouter([
   {
@@ -8,6 +9,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: "main", element: <DashboardPage /> },
+      { path: "data", element: <DataPage /> },
     ],
   },
 ]);

@@ -58,7 +58,14 @@ const SkinTypeCard = () => {
             <span className="font-bold text-xl">{skinType}</span>
           </p>
           <p className="text-xs text-white">
-            Recommended Sunscreen Amount:{" "}
+            UV Index Factor:{" "}
+            <span className="font-bold text-xl">
+              {uvFactor}{" "}
+            </span>
+            
+          </p>
+          <p className="text-xs text-white">
+            Your calculated sunscreen Amount:{" "}
             <span className="font-bold text-xl">
               {TotalSunScreen.toFixed(1)}{" "}
             </span>

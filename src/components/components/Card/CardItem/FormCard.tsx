@@ -91,7 +91,7 @@ const CardWithForm = () => {
           onSubmit={handleSubmit}
           className="h-full flex flex-col"
         >
-          <div className="flex flex-row w-full items-start gap-6 flex-grow">
+          <div className="flex flex-row w-full items-start gap-3 flex-grow">
             <div className="flex flex-col space-y-1.5 ">
               <Label htmlFor="skin-type">Skin Tone</Label>
               <Select
@@ -150,7 +150,7 @@ const CardWithForm = () => {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-start gap-2 mt-auto">
+      <CardFooter className="flex justify-start gap-3 mt-auto">
         <Button
           onClick={handleClearStore}
           className="border-red-300  hover:text-red-600"
