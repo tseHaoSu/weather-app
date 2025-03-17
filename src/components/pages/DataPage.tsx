@@ -30,15 +30,21 @@ const DataPage = () => {
             <ModeToggle />
           </header>
           <h1 className="text-5xl mx-auto p-4">Data Visualisation</h1>
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col gap-8 p-4">
+          <div className="max-w-5xl mx-auto">
+            {" "}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {" "}
               {images.map((src, index) => (
-                <img
+                <div
                   key={index}
-                  src={src}
-                  alt={`State image ${index + 1}`}
-                  className="w-full h-full rounded-2xl"
-                />
+                  className="shadow-lg rounded-2xl overflow-hidden"
+                >
+                  <img
+                    src={src}
+                    alt={`State image ${index + 1}`}
+                    className="w-full h-full object-contain scale-105" /* Added scale-105 to make images slightly larger */
+                  />
+                </div>
               ))}
             </div>
           </div>
