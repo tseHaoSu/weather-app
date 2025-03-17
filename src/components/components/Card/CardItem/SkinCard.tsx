@@ -14,12 +14,12 @@ const SkinTypeCard = () => {
   const TotalSunScreen =
     roundedUVIndex * uvFactor * SkinToneFactor[skinType];
 
-    console.log({
-      skinType,
-      roundedUVIndex,
-      skinFactor: SkinToneFactor[skinType],
-      uvFactor: UVIndexFactor[roundedUVIndex],
-    });
+    // console.log({
+    //   skinType,
+    //   roundedUVIndex,
+    //   skinFactor: SkinToneFactor[skinType],
+    //   uvFactor: UVIndexFactor[roundedUVIndex],
+    // });
 
   const getSkinIcon = () => {
     // Extract the type number (Roman numeral) from the skin type string
