@@ -1,13 +1,23 @@
 import { AppSidebar } from "@/components/components/SideBar/SideBar";
 import { Separator } from "@/components/ui/separator";
 import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger,
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import ModeToggle from "../components/Theme/ModeToggle";
 
+// Import the images directly
+import ACT from "@/assets/data/ACT.jpeg";
+import NSW from "@/assets/data/NSW.jpeg";
+import QLD from "@/assets/data/QLD.jpeg";
+import SA from "@/assets/data/SA.jpeg";
+import TAS from "@/assets/data/TAS.jpeg";
+
 const DataPage = () => {
+  // Use the imported image variables
+  const images = [ACT, NSW, QLD, SA, TAS];
+
   return (
     <div className="mx-auto max-w-[1400px]">
       <SidebarProvider>
@@ -19,8 +29,19 @@ const DataPage = () => {
             <div className="flex-1" />
             <ModeToggle />
           </header>
-          <h1 className="text-5xl">Heading</h1>
-          
+          <h1 className="text-5xl mx-auto p-4">Data Visualisation</h1>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col gap-8 p-4">
+              {images.map((src, index) => (
+                <img
+                  key={index}
+                  src={src}
+                  alt={`State image ${index + 1}`}
+                  className="w-full h-full  \rounded-2xl"
+                />
+              ))}
+            </div>
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </div>

@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Home, Table, Sun } from "lucide-react";
 
 import {
   Sidebar,
@@ -11,32 +11,16 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-// Menu items.
 const items = [
   {
-    title: "Home",
-    url: "#",
+    title: "Dashboard",
+    url: "main",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Data",
+    url: "data",
+    icon: Table,
   },
 ];
 
@@ -45,7 +29,8 @@ export function AppSidebar() {
     <Sidebar className="p-4 border-r-8 border-purple-200 dark:border-purple-900">
       <SidebarContent className="space-y-4">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-lg font-semibold px-2 py-1">
+          <SidebarGroupLabel className="text-lg font-semibold px-3 py-1">
+            <Sun className="mr-2 text-yellow-500" />
             UVision
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-2">
@@ -58,7 +43,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild className="w-full">
                     <a
                       href={item.url}
-                      className="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors"
+                      className="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-500 rounded-md transition-colors"
                     >
                       <item.icon className="h-5 w-5" />
                       <span className="text-sm font-medium">{item.title}</span>
