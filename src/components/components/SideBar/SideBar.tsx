@@ -22,6 +22,11 @@ const items = [
     url: "/data",
     icon: Table,
   },
+  {
+    title: "Landing",
+    url: "/",
+    icon: Sun,
+  }
 ];
 
 export function AppSidebar() {
