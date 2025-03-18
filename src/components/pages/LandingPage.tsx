@@ -26,7 +26,7 @@ const LandingPage = () => {
           className="absolute bottom-5 left-5"
         >
           <h1 className="text-8xl font-bold text-[#F9B52C]">
-            Beautiful sunshine
+            Solar Protection
           </h1>
         </motion.div>
       </div>
@@ -38,17 +38,17 @@ const LandingPage = () => {
         className="w-full mt-4 pr-5 flex justify-end min-h-[80px]"
       >
         <p className="text-6xl text-[#2B69C4] font-semibold">
-          You need to protect your skin
+          Essential for healthy skin
         </p>
       </motion.div>
 
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[#F9B52C] text-3xl font-semibold mb-4">
-          Are you wondering if you need sun protection now?
+          Would you like to know your current UV exposure risk?
         </p>
         <Link to={"/main"}>
           <button className="bg-[#F9B52C] hover:bg-orange-500 text-white font-bold py-6 px-10 rounded-lg text-2xl shadow-lg transition transform hover:scale-105">
-            Check the weather
+            Check UV Index
           </button>
         </Link>
         <div className="relative mt-[-10px] flex items-center justify-center overflow-hidden w-[2000px] h-[500px]">
@@ -60,12 +60,9 @@ const LandingPage = () => {
             />
           </div>
           <div className="relative z-20 flex flex-col items-center text-center">
-            <p className="text-white text-2xl font-semibold mb-4">
-              Know more about the UV and sun damage
+            <p className="text-white text-2xl font-semibold mb-">
+              Understand UV radiation and its impact on skin health
             </p>
-            <button className="bg-white text-[#2B69C4] hover:bg-gray-200 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition transform hover:scale-105">
-              UV Insight
-            </button>
           </div>
         </div>
       </div>
