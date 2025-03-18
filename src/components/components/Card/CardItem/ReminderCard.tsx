@@ -57,7 +57,7 @@ const ReminderCard = () => {
   return (
     <Card className="w-full h-full flex flex-col rounded-xl bg-muted/50">
       <CardHeader>
-        <CardTitle>Reminder</CardTitle>
+        <CardTitle>Reminder (Optional) </CardTitle>
         <CardDescription>Set a reminder to apply sunscreen</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow overflow-y-auto">

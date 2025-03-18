@@ -54,7 +54,7 @@ const SkinTypeCard = () => {
 
         <div className="mt-auto">
           <p className="text-xs text-white font-medium">
-            My skin tone is:{" "}
+            My Skin Tone is:{" "}
             <span className="font-bold text-xl">{skinType}</span>
           </p>
           <p className="text-xs text-white">
@@ -65,7 +65,7 @@ const SkinTypeCard = () => {
             
           </p>
           <p className="text-xs text-white">
-            Your calculated sunscreen Amount:{" "}
+            Your Calculated Sunscreen Amount:{" "}
             <span className="font-bold text-xl">
               {TotalSunScreen.toFixed(1)}{" "}
             </span>
