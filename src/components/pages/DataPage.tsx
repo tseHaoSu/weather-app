@@ -8,11 +8,11 @@ import {
 import ModeToggle from "../components/Theme/ModeToggle";
 
 // Import the images directly
-import ACT from "@/assets/data/ACT.jpeg";
-import NSW from "@/assets/data/NSW.jpeg";
-import QLD from "@/assets/data/QLD.jpeg";
-import SA from "@/assets/data/SA.jpeg";
-import TAS from "@/assets/data/TAS.jpeg";
+import ACT from "@/assets/data/ACT.webp";
+import NSW from "@/assets/data/NSW.webp";
+import QLD from "@/assets/data/QLD.webp";
+import SA from "@/assets/data/SA.webp";
+import TAS from "@/assets/data/TAS.webp";
 
 const DataPage = () => {
   // Use the imported image variables
@@ -30,9 +30,9 @@ const DataPage = () => {
             <ModeToggle />
           </header>
           <h1 className="text-5xl mx-auto p-4">Data Visualisation</h1>
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {" "}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex flex-col gap-8">
               {" "}
               {images.map((src, index) => (
                 <div
@@ -42,7 +42,7 @@ const DataPage = () => {
                   <img
                     src={src}
                     alt={`State image ${index + 1}`}
-                    className="w-full h-full object-contain scale-105" /* Added scale-105 to make images slightly larger */
+                    className="w-full object-contain "
                   />
                 </div>
               ))}
