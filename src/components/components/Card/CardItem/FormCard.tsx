@@ -41,7 +41,6 @@ const CardWithForm = () => {
     };
     setLocation(formData.location ?? "");
 
-    console.log(formData);
     toast.success("Form submitted successfully!", {
       description: `${location} is your location.`,
     });
@@ -58,10 +57,18 @@ const CardWithForm = () => {
     });
   };
 
-  const { weatherUV: rawUV } = useLocationUV();
+  const { currentUVIndex, weatherUV, maxUVIndex } = useLocationUV();
 
-  console.log(rawUV);
-  const weatherUV = Math.round(typeof rawUV === "number" ? rawUV : 0);
+  // Check if currentUVIndex is not a number and set default to 1 if needed
+  let uvIndex = currentUVIndex;
+  if (isNaN(Number(uvIndex)) || typeof uvIndex !== "number") {
+    uvIndex = 1;
+  }
+
+  //test current weather and current Index
+  console.log(uvIndex);
+  console.log(weatherUV);
+  console.log(maxUVIndex);
 
   const uvColors: { [key: number]: string } = {
     0: "#299501", // Low - Green
@@ -142,14 +149,14 @@ const CardWithForm = () => {
             size={24}
             className="text-red-500"
             strokeWidth={3}
-            style={{ marginLeft: `${weatherUV * 5.4}rem` }}
+            style={{ marginLeft: `${uvIndex * 5.4}rem` }}
           />
           <img src={indexImage} alt="index" className="w-full h-full" />
         </div>
         <div className="flex flex-row items-center gap-8 mt-4">
           <div className="flex flex-col">
             <h1 className="text-3xl mx-4 font-medium">
-              Current UV Index level:
+              Current UV Index level: {uvIndex}
             </h1>
             <h1 className="text-3xl mx-4 font-medium">
               My location: {location}
@@ -157,9 +164,9 @@ const CardWithForm = () => {
           </div>
           <div
             className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg"
-            style={{ backgroundColor: getUVcolor(weatherUV) }}
+            style={{ backgroundColor: getUVcolor(uvIndex) }}
           >
-            {weatherUV}
+            {uvIndex}
           </div>
           <Button
             className="border-2 border-blue-400 mt-3 bg-sky-500"

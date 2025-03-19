@@ -1,7 +1,7 @@
 import useLocationUV from "../Utils/useLocationUV";
 
 const LocationCard = () => {
-  const { location, currentUVIndex, maxUVIndex, weatherUV } = useLocationUV();
+  const { location, currentUVIndex, maxUVIndex} = useLocationUV();
 
   // Map icon based on location type (city vs country)
   const getLocationIcon = () => {
@@ -22,10 +22,6 @@ const LocationCard = () => {
           <p className="text-xs text-white font-medium">
             Current UV Level:
             <span className="font-bold ml-2">{currentUVIndex}</span>
-          </p>
-          <p className="text-xs text-white font-medium">
-            OpenWeather
-            <span className="font-bold ml-2">{weatherUV}</span>
           </p>
           <p className="text-xs text-white font-medium">
             {location} Max UV Level Today:

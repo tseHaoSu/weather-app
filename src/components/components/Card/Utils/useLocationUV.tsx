@@ -35,6 +35,7 @@ const useLocationUV = () => {
     return 5; // Default UV index
   };
 
+
   const getMaxUVIndex = () => {
     if (isLoading) return "Loading...";
     if (error) return 8.5; // Default UV index";
@@ -42,7 +43,7 @@ const useLocationUV = () => {
     return 8.5; // Default UV index
   };
 
-  console.log(weatherData);
+
   const getWeatherUV = () => {
     if (isLoading) return "Loading...";
     if (error) return error;
@@ -76,6 +77,8 @@ const useLocationUV = () => {
       setMaxUVIndex(maxUVIndex);
     }
   }, [currentUVIndex, maxUVIndex, setCurrentUVIndex, setMaxUVIndex]);
+
+  console.log(currentUVIndex);
 
   return {
     currentUVIndex,
