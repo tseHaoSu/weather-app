@@ -30,7 +30,7 @@ const useLocationUV = () => {
 
   const getCurrentUVIndex = () => {
     if (isLoading) return "Loading...";
-    if (error) return 5;
+    if (error) return error;
     if (uvData && uvData.result) return Number(uvData.result.uv.toFixed(1));
     return 5; // Default UV index
   };
@@ -38,7 +38,7 @@ const useLocationUV = () => {
 
   const getMaxUVIndex = () => {
     if (isLoading) return "Loading...";
-    if (error) return 8.5; // Default UV index";
+    if (error) return error; // Default UV index";
     if (uvData && uvData.result) return Number(uvData.result.uv_max.toFixed(1));
     return 8.5; // Default UV index
   };
