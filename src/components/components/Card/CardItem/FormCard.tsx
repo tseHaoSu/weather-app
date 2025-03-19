@@ -1,9 +1,9 @@
+import indexImage from "@/assets/index.jpeg";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -16,8 +16,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import useInputQueryStore from "@/store/store";
+import { ArrowDown, MapPin } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
+import useLocationUV from "../Utils/useLocationUV";
 
 interface FormProps {
   name: string;
@@ -76,49 +78,38 @@ const CardWithForm = () => {
     });
   };
 
+  const { weatherUV: rawUV } = useLocationUV();
+  const weatherUV = Math.round(typeof rawUV === "number" ? rawUV : 0);
+  const uvColors: { [key: number]: string } = {
+    0: "#299501", // Low - Green
+    1: "#299501", // Low - Green
+    2: "#87CF30", // Low - Light Green
+    3: "#FFFF00", // Moderate - Yellow
+    4: "#FFFF00", // Moderate - Yellow
+    5: "#FFCC00", // Moderate - Yellow-Orange
+    6: "#FFA500", // High - Orange
+    7: "#FFA500", // High - Orange
+    8: "#FF4D00", // Very High - Red-Orange
+    9: "#FF0000", // Very High - Red
+    10: "#CC00FF", // Extreme - Purple
+    11: "#9000CC", // Extreme - Dark Purple
+    12: "#660099", // Extreme - Dark Purple
+  };
+
+  const getUVcolor = (uv: number) => {
+    return uvColors[uv] ?? "#000";
+  };
+
   return (
     <Card className="w-full h-full flex flex-col rounded-xl bg-muted/50 ">
       <CardHeader>
         <CardTitle>Let us know more about you!</CardTitle>
-        <CardDescription>
-          Input the following fields to get the recommended amount of sunscreen
-          and UV info.{" "}
-        </CardDescription>
+        <CardDescription>Input details</CardDescription>
       </CardHeader>
-      <CardContent className="flex-grow overflow-y-auto">
-        <form
-          id="user-form"
-          onSubmit={handleSubmit}
-          className="h-full flex flex-col"
-        >
-          <div className="flex flex-row w-full items-start gap-3 flex-grow">
-            <div className="flex flex-col space-y-1.5 ">
-              <Label htmlFor="skin-type">Skin Tone</Label>
-              <Select
-                value={skinType}
-                onValueChange={(value) => setLocalSkinType(value)}
-              >
-                <SelectTrigger
-                  id="skin-type"
-                  className="border-2 border-blue-400 "
-                >
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="Type I">Type I (Very Fair)</SelectItem>
-                  <SelectItem value="Type II">Type II (Fair)</SelectItem>
-                  <SelectItem value="Type III">
-                    Type III (Medium Olive)
-                  </SelectItem>
-                  <SelectItem value="Type IV">Type IV (Tan Brown)</SelectItem>
-                  <SelectItem value="Type V">Type V (Dark Brown)</SelectItem>
-                  <SelectItem value="Type VI">
-                    Type VI (Deeply Pigmented/Black)
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex flex-col space-y-1.5">
+      <CardContent>
+        <form id="user-form" onSubmit={handleSubmit} className="mb-3">
+          <div className="flex flex-row w-full items-start gap-2">
+            <div className="flex flex-row space-x-2 mt-3">
               <Label htmlFor="location">My Location</Label>
               <Select
                 value={location}
@@ -146,21 +137,42 @@ const CardWithForm = () => {
                   <SelectItem value="Alice Springs">Alice Springs</SelectItem>
                 </SelectContent>
               </Select>
+              <Button
+                className="border-2 border-blue-400  bg-sky-500"
+                type="submit"
+                form="user-form"
+              >
+                Submit
+              </Button>
+            </div>
+            <h1 className="text-5xl mx-4 font-medium">or</h1>
+            <div className="flex flex-col space-y-2">
+              <Button className="border-2 border-blue-400 mt-3 bg-sky-500">
+                get my location
+                <MapPin size={24} />
+              </Button>
             </div>
           </div>
         </form>
+        <div className="mt-15">
+          <ArrowDown
+            size={24}
+            className="text-red-500"
+            strokeWidth={3}
+            style={{ marginLeft: `${weatherUV * 5.2}rem` }}
+          />
+          <img src={indexImage} alt="index" className="w-full h-full" />
+        </div>
+        <div className="flex flex-row items-center gap-4 mt-4">
+          <h1 className="text-3xl mx-4 font-medium">Current UV Index level:</h1>
+          <div
+            className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg"
+            style={{ backgroundColor: getUVcolor(weatherUV) }}
+          >
+            {weatherUV}
+          </div>
+        </div>
       </CardContent>
-      <CardFooter className="flex justify-start gap-3 mt-auto">
-        <Button
-          onClick={handleClearStore}
-          className="border-red-300  hover:text-red-600"
-        >
-          Clear
-        </Button>
-        <Button type="submit" form="user-form">
-          Submit
-        </Button>
-      </CardFooter>
     </Card>
   );
 };

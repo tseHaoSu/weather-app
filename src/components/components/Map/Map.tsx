@@ -1,3 +1,5 @@
+import { useMutiplwWeatherData, UseWeatherDataProps } from "@/hooks/useUV";
+import { locationCoordinates } from "@/lib/constants";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useEffect, useRef } from "react";
@@ -5,6 +7,14 @@ import React, { useEffect, useRef } from "react";
 const MapboxExample: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const coordinatesList: UseWeatherDataProps[] = Object.values(
+    locationCoordinates
+  ).map((coords) => ({
+    lon: coords.lng,
+    lat: coords.lat,
+  }));
+  const mutipleUVData = useMutiplwWeatherData(coordinatesList);
+  console.log(mutipleUVData);
 
   // Red/pink color palette
   const colors: string[] = [
@@ -76,8 +86,11 @@ const MapboxExample: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ height: "100%" }} >
-      <div ref={mapContainerRef} style={{ height: "100%", width: "100%" }}></div>
+    <div style={{ height: "100%" }}>
+      <div
+        ref={mapContainerRef}
+        style={{ height: "100%", width: "100%" }}
+      ></div>
     </div>
   );
 };

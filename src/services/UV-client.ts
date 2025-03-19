@@ -1,43 +1,12 @@
 import axios, { AxiosRequestConfig } from "axios";
 
+// OpenUV API interfaces
 export interface UVResponse {
   result: {
     uv: number;
     uv_time: string;
     uv_max: number;
     uv_max_time: string;
-    ozone: number;
-    ozone_time: string;
-    safe_exposure_time: {
-      st1: number | null;
-      st2: number | null;
-      st3: number | null;
-      st4: number | null;
-      st5: number | null;
-      st6: number | null;
-    };
-    sun_info: {
-      sun_times: {
-        solarNoon: string;
-        nadir: string;
-        sunrise: string;
-        sunset: string;
-        sunriseEnd: string;
-        sunsetStart: string;
-        dawn: string;
-        dusk: string;
-        nauticalDawn: string;
-        nauticalDusk: string;
-        nightEnd: string;
-        night: string;
-        goldenHourEnd: string;
-        goldenHour: string;
-      };
-      sun_position: {
-        azimuth: number;
-        altitude: number;
-      };
-    };
   };
 }
 
@@ -52,10 +21,64 @@ export interface ProtectionResponse {
   };
 }
 
-const axiosInstance = axios.create({
+// Define OpenWeatherMap response interface based on the provided example
+export interface OpenWeatherResponse {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  current: {
+    dt: number;
+    sunrise: number;
+    sunset: number;
+    temp: number;
+    feels_like: number;
+    pressure: number;
+    humidity: number;
+    dew_point: number;
+    uvi: number;
+    clouds: number;
+    visibility: number;
+    wind_speed: number;
+    wind_deg: number;
+    weather: Array<{
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }>;
+  };
+  hourly: Array<{
+    dt: number;
+    temp: number;
+    feels_like: number;
+    pressure: number;
+    humidity: number;
+    dew_point: number;
+    uvi: number;
+    clouds: number;
+    visibility: number;
+    wind_speed: number;
+    wind_deg: number;
+    wind_gust?: number;
+    weather: Array<{
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }>;
+    pop: number;
+    rain?: {
+      "1h": number;
+    };
+  }>;
+}
+
+// OpenUV API client
+const openUVAxiosInstance = axios.create({
   baseURL: "https://api.openuv.io/api/v1",
   headers: {
-    "x-access-token": "openuv-11cnu4rm88gvvpi-io",
+    "x-access-token": "openuv-11cnu4rm88gvb46-io",
   },
 });
 
@@ -69,7 +92,7 @@ class OpenUVClient {
     },
     config?: AxiosRequestConfig
   ) => {
-    return axiosInstance
+    return openUVAxiosInstance
       .get<UVResponse>("/uv", {
         ...config,
         params,
@@ -87,7 +110,7 @@ class OpenUVClient {
     },
     config?: AxiosRequestConfig
   ) => {
-    return axiosInstance
+    return openUVAxiosInstance
       .get<ProtectionResponse>("/protection", {
         ...config,
         params,
@@ -96,4 +119,35 @@ class OpenUVClient {
   };
 }
 
-export default OpenUVClient;
+// OpenWeatherMap API client
+const openWeatherAxiosInstance = axios.create({
+  baseURL: "https://api.openweathermap.org",
+  params: {
+    appid: "290dc8f3e0a351cdd1155bce8fedf21e",
+  },
+});
+
+class OpenWeatherClient {
+  getOneCall = (
+    params: {
+      lat: number;
+      lon: number;
+      exclude?: string;
+      units?: string;
+      lang?: string;
+    },
+    config?: AxiosRequestConfig
+  ) => {
+    return openWeatherAxiosInstance
+      .get<OpenWeatherResponse>("/data/3.0/onecall", {
+        ...config,
+        params,
+      })
+      .then((res) => res.data);
+  };
+}
+
+// Export default instances for convenience
+const UVClient = new OpenUVClient();
+const weatherClient = new OpenWeatherClient();
+export default { UVClient, weatherClient };

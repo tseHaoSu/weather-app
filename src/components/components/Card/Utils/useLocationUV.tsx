@@ -1,4 +1,4 @@
-import useUVData from "@/hooks/useUV";
+import { useUVData, useWeatherData } from "@/hooks/useUV";
 import { locationCoordinates } from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 import { useEffect } from "react";
@@ -14,28 +14,56 @@ const useLocationUV = () => {
       : { lat: -33.8688, lng: 151.2093 }; // Default to Sydney if location not found
 
   // Fetch UV data for coordinates
-  const { data, isLoading, error } = useUVData({
+  const {
+    data: uvData,
+    isLoading,
+    error,
+  } = useUVData({
     lat: coordinates.lat,
     lng: coordinates.lng,
+  });
+
+  const { data: weatherData } = useWeatherData({
+    lat: coordinates.lat,
+    lon: coordinates.lng,
   });
 
   const getCurrentUVIndex = () => {
     if (isLoading) return "Loading...";
     if (error) return 5;
-    if (data && data.result) return Number(data.result.uv.toFixed(1));
+    if (uvData && uvData.result) return Number(uvData.result.uv.toFixed(1));
     return 5; // Default UV index
   };
 
   const getMaxUVIndex = () => {
     if (isLoading) return "Loading...";
     if (error) return 8.5; // Default UV index";
-    if (data && data.result) return Number(data.result.uv_max.toFixed(1));
+    if (uvData && uvData.result) return Number(uvData.result.uv_max.toFixed(1));
     return 8.5; // Default UV index
+  };
+
+  const getWeatherUV = () => {
+    if (isLoading) return "Loading...";
+    if (error) return 5;
+    if (weatherData && weatherData.current)
+      return Number(weatherData.current.uvi.toFixed(1));
+    return "nothing"; // Default UV index
+  };
+
+  const getHourlyWeatherUV = () => {
+    if (isLoading) return "Loading...";
+    if (error) return 5;
+    if (weatherData && weatherData.hourly) {
+      return weatherData.hourly.map((hour) => hour.uvi);
+    }
+    return "nothing";
   };
 
   // Get actual values
   const currentUVIndex = getCurrentUVIndex();
   const maxUVIndex = getMaxUVIndex();
+  const weatherUV = getWeatherUV();
+  const hourlyWeatherUV = getHourlyWeatherUV();
 
   // Update store when values change
   useEffect(() => {
@@ -55,6 +83,8 @@ const useLocationUV = () => {
     error,
     location,
     coordinates,
+    weatherUV,
+    hourlyWeatherUV,
   };
 };
 

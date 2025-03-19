@@ -1,4 +1,4 @@
-import { Home, Table, Sun } from "lucide-react";
+import { Home, Table, Sun, AppWindow, Shirt, Lightbulb, Info } from "lucide-react";
 
 import {
   Sidebar,
@@ -18,15 +18,35 @@ const items = [
     icon: Home,
   },
   {
+    title: "UV Index",
+    url: "/uv",
+    icon: Sun,
+  },
+  {
+    title: "Recommendation",
+    url: "/recommendation",
+    icon: Shirt,
+  },
+  {
+    title: "Reminder",
+    url: "/reminder",
+    icon: Lightbulb,
+  },
+  {
     title: "Data",
     url: "/data",
     icon: Table,
   },
   {
+    title: "UV Insights",
+    url: "/uv-insights",
+    icon: Info,
+  },
+  {
     title: "Landing",
-    url: "/",
-    icon: Sun,
-  }
+    url: "/landing",
+    icon: AppWindow,
+  },
 ];
 
 export function AppSidebar() {
