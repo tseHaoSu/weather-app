@@ -22,9 +22,7 @@ import { toast } from "sonner";
 import useLocationUV from "../Utils/useLocationUV";
 
 interface FormProps {
-  name: string;
-  skinType: string;
-  location: string;
+  location?: string;
 }
 
 const CardWithForm = () => {
@@ -32,34 +30,23 @@ const CardWithForm = () => {
   const setName = useInputQueryStore((state) => state.setName);
   const setSkinType = useInputQueryStore((state) => state.setSkinType);
   const setLocation = useInputQueryStore((state) => state.setLocation);
+  const location = useInputQueryStore((state) => state.inputQuery.location);
 
   // Local state
-  const [name, setLocalName] = React.useState("");
-  const [skinType, setLocalSkinType] = React.useState("");
-  const [location, setLocalLocation] = React.useState("");
 
   //handle submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData: FormProps = {
-      name,
-      skinType,
       location,
     };
-
-    setName(formData.name);
-    setSkinType(formData.skinType);
-    setLocation(formData.location);
+    setLocation(formData.location ?? "");
 
     console.log(formData);
     toast.success("Form submitted successfully!", {
-      description: `Thank you, ${name}! Your preferences have been saved.`,
+      description: `${location} is your location.`,
     });
-
-    setLocalName("");
-    setLocalSkinType("");
-    setLocalLocation("");
   };
 
   const handleClearStore = () => {
@@ -68,11 +55,6 @@ const CardWithForm = () => {
     setSkinType("");
     setLocation("");
 
-    // Also clear local state
-    setLocalName("");
-    setLocalSkinType("");
-    setLocalLocation("");
-
     toast.info("All data cleared", {
       description: "Your preferences have been reset.",
     });
@@ -80,6 +62,7 @@ const CardWithForm = () => {
 
   const { weatherUV: rawUV } = useLocationUV();
   const weatherUV = Math.round(typeof rawUV === "number" ? rawUV : 0);
+
   const uvColors: { [key: number]: string } = {
     0: "#299501", // Low - Green
     1: "#299501", // Low - Green
@@ -97,7 +80,7 @@ const CardWithForm = () => {
   };
 
   const getUVcolor = (uv: number) => {
-    return uvColors[uv] ?? "#000";
+    return uvColors[uv] ?? "#FFCC00";
   };
 
   return (
@@ -113,7 +96,7 @@ const CardWithForm = () => {
               <Label htmlFor="location">My Location</Label>
               <Select
                 value={location}
-                onValueChange={(value) => setLocalLocation(value)}
+                onValueChange={(value) => setLocation(value)}
               >
                 <SelectTrigger
                   id="location"
@@ -159,18 +142,31 @@ const CardWithForm = () => {
             size={24}
             className="text-red-500"
             strokeWidth={3}
-            style={{ marginLeft: `${weatherUV * 5.2}rem` }}
+            style={{ marginLeft: `${weatherUV * 5.4}rem` }}
           />
           <img src={indexImage} alt="index" className="w-full h-full" />
         </div>
-        <div className="flex flex-row items-center gap-4 mt-4">
-          <h1 className="text-3xl mx-4 font-medium">Current UV Index level:</h1>
+        <div className="flex flex-row items-center gap-8 mt-4">
+          <div className="flex flex-col">
+            <h1 className="text-3xl mx-4 font-medium">
+              Current UV Index level:
+            </h1>
+            <h1 className="text-3xl mx-4 font-medium">
+              My location: {location}
+            </h1>
+          </div>
           <div
-            className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg"
+            className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg"
             style={{ backgroundColor: getUVcolor(weatherUV) }}
           >
             {weatherUV}
           </div>
+          <Button
+            className="border-2 border-blue-400 mt-3 bg-sky-500"
+            onClick={handleClearStore}
+          >
+            Clear
+          </Button>
         </div>
       </CardContent>
     </Card>
