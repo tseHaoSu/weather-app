@@ -1,7 +1,10 @@
-import useLocationUV from "../Utils/useLocationUV";
+import useInputQueryStore from "@/store/store";
+
 
 const LocationCard = () => {
-  const { location, currentUVIndex, maxUVIndex} = useLocationUV();
+  const location = useInputQueryStore((state) => state.inputQuery.location);
+  const currentUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
+  const maxUVIndex = useInputQueryStore((state) => state.inputQuery.maxUVIndex);
 
   // Map icon based on location type (city vs country)
   const getLocationIcon = () => {

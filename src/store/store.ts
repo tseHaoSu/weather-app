@@ -5,7 +5,7 @@ interface InputQuery {
   userName?: string;
   skinType?: string;
   location?: string;
-  maxUV?: number;
+  maxUVIndex?: number;
   UVIndex?: number;
 }
 

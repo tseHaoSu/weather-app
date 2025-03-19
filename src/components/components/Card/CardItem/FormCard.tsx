@@ -15,27 +15,101 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useUVData } from "@/hooks/useUV";
+// import { useWeatherData } from "@/hooks/useUV";
+import { DEFAULT_COORDINATES, DEFAULT_UV_INDEX, locationCoordinates, uvColors } from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 import { ArrowDown, MapPin } from "lucide-react";
 import * as React from "react";
+import { useEffect } from "react";
 import { toast } from "sonner";
-import useLocationUV from "../Utils/useLocationUV";
 
 interface FormProps {
   location?: string;
 }
 
 const CardWithForm = () => {
-  // Global state
   const setName = useInputQueryStore((state) => state.setName);
   const setSkinType = useInputQueryStore((state) => state.setSkinType);
   const setLocation = useInputQueryStore((state) => state.setLocation);
+  const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
   const location = useInputQueryStore((state) => state.inputQuery.location);
+  const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
+  const coordinates =
+    location && locationCoordinates[location]
+      ? locationCoordinates[location]
+      : DEFAULT_COORDINATES;
+
+  const {
+    data: uvData,
+    isLoading,
+    error,
+  } = useUVData({
+    lat: coordinates.lat,
+    lng: coordinates.lng,
+  });
+
+  //openweatherAPI
+  // const { data: weatherData } = useWeatherData({
+  //   lat: coordinates.lat,
+  //   lon: coordinates.lng,
+  // });
+
+  // Open UV API
+  const getOpenUVIndex = () => {
+    if (isLoading) return "Loading...";
+    if (error) return error;
+    if (uvData && uvData.result) return Number(uvData.result.uv.toFixed(1)); // Default UV index
+  };
+
+  //Open UV API
+  // const getMaxUVIndex = () => {
+  //   if (isLoading) return "Loading...";
+  //   if (error) return error; // Default UV index";
+  //   if (uvData && uvData.result) return Number(uvData.result.uv_max.toFixed(1));
+  //   return 8.5; // Default UV index
+  // };
+
+  // //openweatherAPI
+  // const getOpenWeatherUVIndex = () => {
+  //   if (isLoading) return "Loading...";
+  //   if (error) return error;
+  //   if (weatherData && weatherData.current)
+  //     return Number(weatherData.current.uvi.toFixed(1));
+  //   return "5"; // Default UV index
+  // };
+
+  // const getHourlyWeatherUVIndex = () => {
+  //   if (isLoading) return "Loading...";
+  //   if (error) return 5;
+  //   if (weatherData && weatherData.hourly) {
+  //     return weatherData.hourly.map((hour) => hour.uvi);
+  //   }
+  //   return "nothing";
+  // };
+
+  const OpenUVIndex = getOpenUVIndex();
+  // const maxUVIndex = getMaxUVIndex();
+  // const weatherUV = getOpenWeatherUVIndex();
+  // const hourlyWeatherUV = getHourlyWeatherUVIndex();
+  // console.log(currentUVIndex, maxUVIndex, weatherUV, hourlyWeatherUV);
+
+ useEffect(() => {
+    if (typeof OpenUVIndex === "number" && OpenUVIndex !== storedUVIndex) {
+      setUVIndex(OpenUVIndex);
+    }
+  }, [OpenUVIndex, storedUVIndex, setUVIndex]);
+
+  const numericUVIndex =
+    typeof OpenUVIndex === "number" ? OpenUVIndex : DEFAULT_UV_INDEX;
+
+  const getUVcolor = (uv: number) => {
+    return uvColors[uv] ?? "#FFCC00";
+  };
 
   //handle submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData: FormProps = {
       location,
     };
@@ -51,43 +125,11 @@ const CardWithForm = () => {
     setName("");
     setSkinType("");
     setLocation("");
+    setUVIndex(DEFAULT_UV_INDEX);
 
     toast.info("All data cleared", {
       description: "Your preferences have been reset.",
     });
-  };
-
-  const { currentUVIndex, weatherUV, maxUVIndex } = useLocationUV();
-
-  // Check if currentUVIndex is not a number and set default to 1 if needed
-  let uvIndex = currentUVIndex;
-  if (isNaN(Number(uvIndex)) || typeof uvIndex !== "number") {
-    uvIndex = 1;
-  }
-
-  //test current weather and current Index
-  console.log(uvIndex);
-  console.log(weatherUV);
-  console.log(maxUVIndex);
-
-  const uvColors: { [key: number]: string } = {
-    0: "#299501", // Low - Green
-    1: "#299501", // Low - Green
-    2: "#87CF30", // Low - Light Green
-    3: "#FFFF00", // Moderate - Yellow
-    4: "#FFFF00", // Moderate - Yellow
-    5: "#FFCC00", // Moderate - Yellow-Orange
-    6: "#FFA500", // High - Orange
-    7: "#FFA500", // High - Orange
-    8: "#FF4D00", // Very High - Red-Orange
-    9: "#FF0000", // Very High - Red
-    10: "#CC00FF", // Extreme - Purple
-    11: "#9000CC", // Extreme - Dark Purple
-    12: "#660099", // Extreme - Dark Purple
-  };
-
-  const getUVcolor = (uv: number) => {
-    return uvColors[uv] ?? "#FFCC00";
   };
 
   return (
@@ -149,14 +191,14 @@ const CardWithForm = () => {
             size={24}
             className="text-red-500"
             strokeWidth={3}
-            style={{ marginLeft: `${uvIndex * 5.4}rem` }}
+            style={{ marginLeft: `${numericUVIndex * 5.4}rem` }}
           />
           <img src={indexImage} alt="index" className="w-full h-full" />
         </div>
         <div className="flex flex-row items-center gap-8 mt-4">
           <div className="flex flex-col">
             <h1 className="text-3xl mx-4 font-medium">
-              Current UV Index level: {uvIndex}
+              Current UV Index level: {numericUVIndex}
             </h1>
             <h1 className="text-3xl mx-4 font-medium">
               My location: {location}
@@ -164,9 +206,9 @@ const CardWithForm = () => {
           </div>
           <div
             className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg"
-            style={{ backgroundColor: getUVcolor(uvIndex) }}
+            style={{ backgroundColor: getUVcolor(numericUVIndex) }}
           >
-            {uvIndex}
+            {numericUVIndex}
           </div>
           <Button
             className="border-2 border-blue-400 mt-3 bg-sky-500"

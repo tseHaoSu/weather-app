@@ -7,15 +7,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import ProtectionRec from "../Utils/ProtectionRec";
-import useLocationUV from "../Utils/useLocationUV";
+import useInputQueryStore from "@/store/store";
+
 
 const CarouselDemo = () => {
-  const { currentUVIndex } = useLocationUV();
-  const recommendations = ProtectionRec(
-    typeof currentUVIndex === "number"
-      ? currentUVIndex
-      : parseInt(currentUVIndex)
-  );
+  const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
+  const safeUVIndex = typeof storedUVIndex === "number" ? storedUVIndex : 0;
+  const recommendations = ProtectionRec(safeUVIndex);
   const recommendationItems = [
     { title: "Risk Level", detail: recommendations.riskLevel },
     { title: "Clothing", detail: recommendations.clothing },

@@ -78,3 +78,22 @@ export const SkinToneFactor: { [key: string]: number } = {
   "Type V": 0.85,
   "Type VI": 0.75,
 };
+
+ export const uvColors: { [key: number]: string } = {
+  0: "#299501", // Low - Green
+  1: "#299501", // Low - Green
+  2: "#87CF30", // Low - Light Green
+  3: "#FFFF00", // Moderate - Yellow
+  4: "#FFFF00", // Moderate - Yellow
+  5: "#FFCC00", // Moderate - Yellow-Orange
+  6: "#FFA500", // High - Orange
+  7: "#FFA500", // High - Orange
+  8: "#FF4D00", // Very High - Red-Orange
+  9: "#FF0000", // Very High - Red
+  10: "#CC00FF", // Extreme - Purple
+  11: "#9000CC", // Extreme - Dark Purple
+  12: "#660099", // Extreme - Dark Purple
+};
+
+export const DEFAULT_COORDINATES = { lat: -33.8688, lng: 151.2093 }; // Sydney
+export const DEFAULT_UV_INDEX = 5;
