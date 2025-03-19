@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
+const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+const UV_API_KEY = import.meta.env.VITE_OPENUV_API_KEY;
 
 // OpenUV API interfaces
 export interface UVResponse {
@@ -78,7 +80,7 @@ export interface OpenWeatherResponse {
 const openUVAxiosInstance = axios.create({
   baseURL: "https://api.openuv.io/api/v1",
   headers: {
-    "x-access-token": "openuv-11cnu4rm88gvb46-io",
+    "x-access-token": UV_API_KEY,
   },
 });
 
@@ -123,7 +125,7 @@ class OpenUVClient {
 const openWeatherAxiosInstance = axios.create({
   baseURL: "https://api.openweathermap.org",
   params: {
-    appid: "290dc8f3e0a351cdd1155bce8fedf21e",
+    appid: WEATHER_API_KEY,
   },
 });
 

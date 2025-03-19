@@ -32,8 +32,6 @@ const CardWithForm = () => {
   const setLocation = useInputQueryStore((state) => state.setLocation);
   const location = useInputQueryStore((state) => state.inputQuery.location);
 
-  // Local state
-
   //handle submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,6 +59,8 @@ const CardWithForm = () => {
   };
 
   const { weatherUV: rawUV } = useLocationUV();
+
+  console.log(rawUV);
   const weatherUV = Math.round(typeof rawUV === "number" ? rawUV : 0);
 
   const uvColors: { [key: number]: string } = {

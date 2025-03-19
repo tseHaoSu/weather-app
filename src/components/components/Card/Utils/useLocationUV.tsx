@@ -42,12 +42,13 @@ const useLocationUV = () => {
     return 8.5; // Default UV index
   };
 
+  console.log(weatherData);
   const getWeatherUV = () => {
     if (isLoading) return "Loading...";
-    if (error) return 5;
+    if (error) return error;
     if (weatherData && weatherData.current)
       return Number(weatherData.current.uvi.toFixed(1));
-    return "nothing"; // Default UV index
+    return "5"; // Default UV index
   };
 
   const getHourlyWeatherUV = () => {
