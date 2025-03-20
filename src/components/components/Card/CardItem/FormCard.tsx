@@ -139,20 +139,17 @@ const CardWithForm = () => {
   };
 
   return (
-    <Card className="w-full h-full flex flex-col rounded-xl bg-muted/50 ">
+    <Card className="w-full flex flex-col rounded-xl bg-muted/50 ">
       <CardHeader>
-        <CardTitle>Let us know more about you!</CardTitle>
-        <CardDescription>Input details</CardDescription>
+        <CardTitle>UV Index Checker</CardTitle>
+        <CardDescription>Enter your location to get your current UV index!</CardDescription>
       </CardHeader>
       <CardContent>
         <form id="user-form" onSubmit={handleSubmit} className="mb-3">
           <div className="flex flex-row w-full items-start gap-2">
             <div className="flex flex-row space-x-2 mt-3">
               <Label htmlFor="location">My Location</Label>
-              <Select
-                value={localLocation}
-                onValueChange={setLocalLocation}
-              >
+              <Select value={localLocation} onValueChange={setLocalLocation}>
                 <SelectTrigger
                   id="location"
                   className="border-2 border-blue-400 "

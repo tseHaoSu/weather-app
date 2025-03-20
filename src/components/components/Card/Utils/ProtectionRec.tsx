@@ -1,8 +1,8 @@
 const ProtectionRec = (uvIndex: number) => {
-  // Round to nearest integer
+  // Round 
   const roundedUVIndex = Math.round(uvIndex);
 
-  // Default recommendations (will be overridden based on UV index)
+  // Default recommendations 
   const recommendations = {
     riskLevel: "",
     clothing: "",
@@ -12,7 +12,7 @@ const ProtectionRec = (uvIndex: number) => {
     additionalNotes: "",
   };
 
-  // Set recommendations based on UV index levels
+  // Set recommendations
   if (roundedUVIndex <= 2) {
     // Low UV: 0-2
     recommendations.riskLevel = "Low 🟢";
