@@ -152,4 +152,5 @@ class OpenWeatherClient {
 // Export default instances for convenience
 const UVClient = new OpenUVClient();
 const weatherClient = new OpenWeatherClient();
-export default { UVClient, weatherClient };
+const apiClients = { UVClient, weatherClient };
+export default apiClients;
