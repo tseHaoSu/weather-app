@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClients from "@/services/uv-client";
+import apiClients from "@/services/uv-client.ts";
 interface UseUVDataProps {
   lat: number;
   lng: number;
