@@ -1,5 +1,7 @@
+import uvClient from "@/services/openUV-client";
+import weatherClient from "@/services/openWeather-client";
 import { useQuery } from "@tanstack/react-query";
-import apiClients from "@/services/uv-client.ts";
+
 interface UseUVDataProps {
   lat: number;
   lng: number;
@@ -23,7 +25,7 @@ const useUVData = ({
 }: UseUVDataProps) => {
   return useQuery({
     queryKey: ["uvData", lat, lng],
-    queryFn: () => apiClients.UVClient.getUV({ lat, lng }),
+    queryFn: () => uvClient.getUV({ lat, lng }),
     staleTime: 1000 * 60 * 10, // 10 minutes
     enabled: enabled && Boolean(lat && lng),
   });
@@ -40,7 +42,7 @@ const useWeatherData = ({
   return useQuery({
     queryKey: ["weatherData", lat, lon],
     queryFn: () =>
-      apiClients.weatherClient.getOneCall({
+      weatherClient.getOneCall({
         lat,
         lon,
         exclude,
@@ -56,7 +58,7 @@ const useMutiplwWeatherData = (locations: UseWeatherDataProps[]) => {
   return locations.map((location) => ({
     queryKey: ["weatherData", location.lat, location.lon],
     queryFn: () =>
-      apiClients.weatherClient.getOneCall({
+      weatherClient.getOneCall({
         lat: location.lat,
         lon: location.lon,
         exclude: location.exclude,

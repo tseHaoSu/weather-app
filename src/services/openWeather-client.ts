@@ -1,29 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios";
+
 const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
-const UV_API_KEY = import.meta.env.VITE_OPENUV_API_KEY;
 
-// OpenUV API interfaces
-export interface UVResponse {
-  result: {
-    uv: number;
-    uv_time: string;
-    uv_max: number;
-    uv_max_time: string;
-  };
-}
-
-export interface ProtectionResponse {
-  result: {
-    from_time: string;
-    to_time: string;
-    from_uv: number;
-    to_uv: number;
-    protection_start: string;
-    protection_end: string;
-  };
-}
-
-// Define OpenWeatherMap response interface based on the provided example
+// Define OpenWeatherMap response interface
 export interface OpenWeatherResponse {
   lat: number;
   lon: number;
@@ -76,51 +55,6 @@ export interface OpenWeatherResponse {
   }>;
 }
 
-// OpenUV API client
-const openUVAxiosInstance = axios.create({
-  baseURL: "https://api.openuv.io/api/v1",
-  headers: {
-    "x-access-token": UV_API_KEY,
-  },
-});
-
-class OpenUVClient {
-  getUV = (
-    params: {
-      lat: number;
-      lng: number;
-      alt?: number;
-      dt?: string;
-    },
-    config?: AxiosRequestConfig
-  ) => {
-    return openUVAxiosInstance
-      .get<UVResponse>("/uv", {
-        ...config,
-        params,
-      })
-      .then((res) => res.data);
-  };
-
-  getProtection = (
-    params: {
-      lat: number;
-      lng: number;
-      alt?: number;
-      from_time?: string;
-      to_time?: string;
-    },
-    config?: AxiosRequestConfig
-  ) => {
-    return openUVAxiosInstance
-      .get<ProtectionResponse>("/protection", {
-        ...config,
-        params,
-      })
-      .then((res) => res.data);
-  };
-}
-
 // OpenWeatherMap API client
 const openWeatherAxiosInstance = axios.create({
   baseURL: "https://api.openweathermap.org",
@@ -149,8 +83,5 @@ class OpenWeatherClient {
   };
 }
 
-// Export default instances for convenience
-const UVClient = new OpenUVClient();
 const weatherClient = new OpenWeatherClient();
-const apiClients = { UVClient, weatherClient };
-export default apiClients;
+export default weatherClient;
