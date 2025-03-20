@@ -44,7 +44,7 @@ const items = [
   },
   {
     title: "Landing",
-    url: "/landing",
+    url: "/",
     icon: AppWindow,
   },
 ];

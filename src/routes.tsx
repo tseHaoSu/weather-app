@@ -7,22 +7,25 @@ import Layout from "./components/pages/Layout";
 import UVIndexPage from "./components/pages/UVIndexPage";
 import RecommendationPage from "./components/pages/RecommendationPage";
 import ReminderPage from "./components/pages/ReminderPage";
-
+import UVTipsPage from "./components/pages/UVTipsPage";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/",
     errorElement: <ErrorPage />,
     element: <Layout />,
     children: [
-      { index: true, element: <LandingPage /> },
       { path: "main", element: <DashboardPage /> },
       { path: "data", element: <DataPage /> },
       { path: "uv", element: <UVIndexPage /> },
-      { path: "uv-insights", element: <UVIndexPage /> },
+      { path: "uv-insights", element: <UVTipsPage /> },
       { path: "recommendation", element: <RecommendationPage /> },
       { path: "reminder", element: <ReminderPage /> },
-      {path: "landing", element: <LandingPage />}
     ],
   },
 ]);

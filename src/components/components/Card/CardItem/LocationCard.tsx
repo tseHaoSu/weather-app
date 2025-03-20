@@ -5,6 +5,7 @@ const LocationCard = () => {
   const location = useInputQueryStore((state) => state.inputQuery.location);
   const currentUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
   const maxUVIndex = useInputQueryStore((state) => state.inputQuery.maxUVIndex);
+  console.log(location, currentUVIndex, maxUVIndex);
 
   // Map icon based on location type (city vs country)
   const getLocationIcon = () => {
@@ -24,11 +25,11 @@ const LocationCard = () => {
         <div className="mt-auto">
           <p className="text-xs text-white font-medium">
             Current UV Level:
-            <span className="font-bold ml-2">{currentUVIndex}</span>
+            <span className="font-bold ml-2 text-2xl">{currentUVIndex}</span>
           </p>
           <p className="text-xs text-white font-medium">
             {location} Max UV Level Today:
-            <span className="font-bold ml-2">{maxUVIndex}</span>
+            <span className="font-bold ml-2 text-2xl">{maxUVIndex}</span>
           </p>
         </div>
       </div>

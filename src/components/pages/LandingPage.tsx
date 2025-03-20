@@ -8,7 +8,7 @@ const LandingPage = () => {
   const [showSecondText, setShowSecondText] = useState(false);
 
   return (
-    <div className="mx-auto max-w-[1400px] min-h-screen bg-[#FFFBD2] overflow-hidden">
+    <div className="mx-auto bg-[#FFFBD2] overflow-hidden">
       <div className="relative w-full h-[50vh]">
         <img
           src={sunImage}

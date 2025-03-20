@@ -6,19 +6,33 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import ProtectionRec from "../Utils/ProtectionRec";
+import ProtectionRec, { SkinToneType } from "../Utils/ProtectionRec";
 import useInputQueryStore from "@/store/store";
 
 const CarouselDemo = () => {
   const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
+  const skinTone = useInputQueryStore((state) => state.inputQuery.skinType)  || "";
+
+  const isValidSkinTone = (value: string): value is SkinToneType => {
+       return [
+         "Type I",
+         "Type II",
+         "Type III",
+         "Type IV",
+         "Type V",
+         "Type VI",
+       ].includes(value);
+     };
   const safeUVIndex = typeof storedUVIndex === "number" ? storedUVIndex : 0;
-  const recommendations = ProtectionRec(safeUVIndex);
+  const safeSkinTone = isValidSkinTone(skinTone) ? skinTone : "Type III";
+  const recommendations = ProtectionRec(safeSkinTone, safeUVIndex);
   const recommendationItems = [
     { title: "Risk Level", detail: recommendations.riskLevel },
     { title: "Clothing", detail: recommendations.clothing },
     { title: "Hat", detail: recommendations.hat },
     { title: "Sunglasses", detail: recommendations.sunglasses },
     { title: "Fabric", detail: recommendations.fabric },
+    { title: "Additional Notes", detail: recommendations.additionalNotes },
   ];
 
   return (

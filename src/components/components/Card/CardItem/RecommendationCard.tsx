@@ -23,7 +23,7 @@ import {
 import { SkinToneFactor, skinTypeColors, UVIndexFactor } from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 import { toast } from "sonner";
-import ProtectionRec from "../Utils/ProtectionRec";
+import ProtectionRec, { SkinToneType } from "../Utils/ProtectionRec";
 
 interface FormProps {
   skinTone?: string;
@@ -57,14 +57,29 @@ const RecommendationCard = () => {
     SkinToneFactor[skinTone]
   ).toFixed(1);
 
+  //comfirm the skin tone
+   const isValidSkinTone = (value: string): value is SkinToneType => {
+     return [
+       "Type I",
+       "Type II",
+       "Type III",
+       "Type IV",
+       "Type V",
+       "Type VI",
+     ].includes(value);
+   };
+
   const safeUVIndex = typeof currentUV === "number" ? currentUV : 0;
-  const recommendations = ProtectionRec(safeUVIndex);
+  const safeSkinTone = isValidSkinTone(skinTone) ? skinTone : "Type III";
+  const recommendations = ProtectionRec(safeSkinTone, safeUVIndex);
   const recommendationItems = [
-    { title: "Risk Level", detail: recommendations.riskLevel },
-    { title: "Clothing", detail: recommendations.clothing },
-    { title: "Hat", detail: recommendations.hat },
-    { title: "Sunglasses", detail: recommendations.sunglasses },
-    { title: "Fabric", detail: recommendations.fabric },
+    { title: "Risk Level:", detail: recommendations.riskLevel },
+    { title: "Clothing:", detail: recommendations.clothing },
+    { title: "Hat:", detail: recommendations.hat },
+    { title: "Sunglasses:", detail: recommendations.sunglasses },
+    { title: "Fabric:", detail: recommendations.fabric },
+    { title: "SPF:", detail: recommendations.spf },
+    { title: "", detail: recommendations.additionalNotes },
   ];
 
   const getSkinIcon = () => {
@@ -204,7 +219,7 @@ const RecommendationCard = () => {
                         <div className="p-1 h-full">
                           <div className="flex justify-center items-center p-4 h-full">
                             <span className="text-xl font-semibold text-white">
-                              {item.title}:
+                              {item.title}
                             </span>
                             <span className="text-xl font-semibold text-white ml-3">
                               {item.detail}

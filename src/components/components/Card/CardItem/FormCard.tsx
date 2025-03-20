@@ -38,6 +38,7 @@ const CardWithForm = () => {
   const setSkinType = useInputQueryStore((state) => state.setSkinType);
   const setLocation = useInputQueryStore((state) => state.setLocation);
   const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
+  const setMaxUVIndex = useInputQueryStore((state) => state.setMaxUV);
   const location = useInputQueryStore((state) => state.inputQuery.location);
   const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
   const [localLocation, setLocalLocation] = useState(location);
@@ -66,6 +67,12 @@ const CardWithForm = () => {
     if (isLoading) return "Loading...";
     if (error) return error;
     if (uvData && uvData.result) return Number(uvData.result.uv.toFixed(1)); // Default UV index
+  };
+
+  const getOpenUVMaxIndex = () => {
+    if (isLoading) return "Loading...";
+    if (error) return error;
+    if (uvData && uvData.result) return Number(uvData.result.uv_max.toFixed(1));
   };
 
   //Open UV API
@@ -100,11 +107,16 @@ const CardWithForm = () => {
   // const hourlyWeatherUV = getHourlyWeatherUVIndex();
   // console.log(currentUVIndex, maxUVIndex, weatherUV, hourlyWeatherUV);
 
+  const OpenUVMaxIndex = getOpenUVMaxIndex();
+
   useEffect(() => {
     if (typeof OpenUVIndex === "number" && OpenUVIndex !== storedUVIndex) {
       setUVIndex(OpenUVIndex);
     }
-  }, [OpenUVIndex, storedUVIndex, setUVIndex]);
+    if (typeof OpenUVMaxIndex === "number") {
+      setMaxUVIndex(OpenUVMaxIndex);
+    }
+  }, [OpenUVIndex, storedUVIndex, setUVIndex, OpenUVMaxIndex, setMaxUVIndex]);
 
   const numericUVIndex =
     typeof OpenUVIndex === "number" ? OpenUVIndex : DEFAULT_UV_INDEX;
@@ -142,7 +154,9 @@ const CardWithForm = () => {
     <Card className="w-full flex flex-col rounded-xl bg-muted/50 ">
       <CardHeader>
         <CardTitle>UV Index Checker</CardTitle>
-        <CardDescription>Enter your location to get your current UV index!</CardDescription>
+        <CardDescription>
+          Enter your location to get your current UV index!
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form id="user-form" onSubmit={handleSubmit} className="mb-3">
