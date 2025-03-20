@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+// const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
 // Define OpenWeatherMap response interface
 export interface OpenWeatherResponse {
@@ -59,7 +59,7 @@ export interface OpenWeatherResponse {
 const openWeatherAxiosInstance = axios.create({
   baseURL: "https://api.openweathermap.org",
   params: {
-    appid: WEATHER_API_KEY,
+    appid: "17964e35a04f6af9ce7829d61c487d54",
   },
 });
 

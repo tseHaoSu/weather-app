@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const UV_API_KEY = import.meta.env.VITE_OPENUV_API_KEY;
+// const UV_API_KEY = import.meta.env.VITE_OPENUV_API_KEY;
 
 // OpenUV API interfaces
 export interface UVResponse {
@@ -27,7 +27,7 @@ export interface ProtectionResponse {
 const openUVAxiosInstance = axios.create({
   baseURL: "https://api.openuv.io/api/v1",
   headers: {
-    "x-access-token": UV_API_KEY,
+    "x-access-token": "openuv-11cnu4rm88gu40w-io",
   },
 });
 
