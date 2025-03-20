@@ -97,3 +97,12 @@ export const SkinToneFactor: { [key: string]: number } = {
 
 export const DEFAULT_COORDINATES = { lat: -33.8688, lng: 151.2093 }; // Sydney
 export const DEFAULT_UV_INDEX = 5;
+
+export const skinTypeColors: { [key: string]: string } = {
+  "Type I": "#ffe4d1", // Very fair
+  "Type II": "#f5d4b9", // Fair
+  "Type III": "#e6be9c", // Medium
+  "Type IV": "#bc8a5f", // Olive
+  "Type V": "#8b5a2b", // Brown
+  "Type VI": "#4a2d0f", // Dark brown/black
+};

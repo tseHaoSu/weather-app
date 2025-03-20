@@ -3,7 +3,7 @@ import useInputQueryStore from "@/store/store";
 
 const SkinTypeCard = () => {
   const skinType =
-    useInputQueryStore((state) => state.inputQuery.skinType) || "Type I";
+    useInputQueryStore((state) => state.inputQuery.skinType) || "";
 
   const currentUV =
     useInputQueryStore((state) => state.inputQuery.UVIndex) || 1;

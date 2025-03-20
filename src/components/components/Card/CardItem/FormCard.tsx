@@ -17,11 +17,16 @@ import {
 } from "@/components/ui/select";
 import { useUVData } from "@/hooks/useUV";
 // import { useWeatherData } from "@/hooks/useUV";
-import { DEFAULT_COORDINATES, DEFAULT_UV_INDEX, locationCoordinates, uvColors } from "@/lib/constants";
+import {
+  DEFAULT_COORDINATES,
+  DEFAULT_UV_INDEX,
+  locationCoordinates,
+  uvColors,
+} from "@/lib/constants";
 import useInputQueryStore from "@/store/store";
 import { ArrowDown, MapPin } from "lucide-react";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface FormProps {
@@ -35,6 +40,7 @@ const CardWithForm = () => {
   const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
   const location = useInputQueryStore((state) => state.inputQuery.location);
   const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
+  const [localLocation, setLocalLocation] = useState(location);
   const coordinates =
     location && locationCoordinates[location]
       ? locationCoordinates[location]
@@ -94,7 +100,7 @@ const CardWithForm = () => {
   // const hourlyWeatherUV = getHourlyWeatherUVIndex();
   // console.log(currentUVIndex, maxUVIndex, weatherUV, hourlyWeatherUV);
 
- useEffect(() => {
+  useEffect(() => {
     if (typeof OpenUVIndex === "number" && OpenUVIndex !== storedUVIndex) {
       setUVIndex(OpenUVIndex);
     }
@@ -111,12 +117,12 @@ const CardWithForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData: FormProps = {
-      location,
+      location: localLocation,
     };
     setLocation(formData.location ?? "");
 
     toast.success("Form submitted successfully!", {
-      description: `${location} is your location.`,
+      description: `${localLocation} is your location.`,
     });
   };
 
@@ -144,8 +150,8 @@ const CardWithForm = () => {
             <div className="flex flex-row space-x-2 mt-3">
               <Label htmlFor="location">My Location</Label>
               <Select
-                value={location}
-                onValueChange={(value) => setLocation(value)}
+                value={localLocation}
+                onValueChange={setLocalLocation}
               >
                 <SelectTrigger
                   id="location"

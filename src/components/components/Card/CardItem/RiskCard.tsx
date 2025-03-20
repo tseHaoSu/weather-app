@@ -9,7 +9,6 @@ import {
 import ProtectionRec from "../Utils/ProtectionRec";
 import useInputQueryStore from "@/store/store";
 
-
 const CarouselDemo = () => {
   const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
   const safeUVIndex = typeof storedUVIndex === "number" ? storedUVIndex : 0;
@@ -21,15 +20,15 @@ const CarouselDemo = () => {
     { title: "Sunglasses", detail: recommendations.sunglasses },
     { title: "Fabric", detail: recommendations.fabric },
   ];
-  console.log(recommendationItems);
+
   return (
-    <div className="h-full w-full flex items-start justify-center bg-gradient-to-r from-blue-300 to-purple-500">
-      <Carousel className="w-full">
-        <CarouselContent className="p-2 h-full">
+    <div className="h-full w-full bg-gradient-to-r from-blue-300 to-purple-500 flex flex-col">
+      <Carousel className="w-full flex-1 flex flex-col">
+        <CarouselContent className="p-2 flex-1">
           {recommendationItems.map((item, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="h-full">
               <div className="p-1 h-full">
-                <CardContent className="flex items-start justify-center p-4 h-full">
+                <CardContent className="flex justify-center items-center p-4 h-full">
                   <span className="text-xl font-semibold text-white">
                     {item.title}:
                   </span>
@@ -41,7 +40,7 @@ const CarouselDemo = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex justify-center gap-2 mt-10">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-4">
           <CarouselPrevious className="static transform-none mx-0 bg-background hover:bg-muted border-none" />
           <CarouselNext className="static transform-none mx-0 bg-background hover:bg-muted border-none" />
         </div>
