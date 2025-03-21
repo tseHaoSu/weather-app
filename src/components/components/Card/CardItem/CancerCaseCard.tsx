@@ -48,9 +48,9 @@ const CancerCaseCard = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Australian Case Reports by State</CardTitle>
+        <CardTitle>Cancer cases in Australia by State</CardTitle>
         <CardDescription>
-          Showing total reported cases for each state over 6 years
+          Showing total reported cases for each state over the past 6 years
         </CardDescription>
       </CardHeader>
       <CardContent>
