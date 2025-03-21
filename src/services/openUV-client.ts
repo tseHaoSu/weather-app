@@ -27,7 +27,7 @@ export interface ProtectionResponse {
 const openUVAxiosInstance = axios.create({
   baseURL: "https://api.openuv.io/api/v1",
   headers: {
-    "x-access-token": "openuv-11cnu4rm88gu40w-io",
+    "x-access-token": "openuv-11cnu4rm88gvdul-io",
   },
 });
 
