@@ -46,7 +46,7 @@ const LandingPage = () => {
         </p>
         <Link to="/main">
           <button className="bg-[#F9B52C] hover:bg-orange-500 text-white font-bold py-6 px-10 rounded-lg text-2xl shadow-lg transition transform hover:scale-105">
-            Check UV Index
+            Go to Dashboard
           </button>
         </Link>
 
