@@ -24,7 +24,7 @@ const UVTipsPage = () => {
                 <div className="bg-blue-600 text-white p-2 font-semibold text-center">
                   {title}
                 </div>
-                <div className="p-3 text-sm h-64 overflow-y-auto">
+                <div className="p-3 text-sm overflow-y-auto">
                   {content}
                 </div>
               </div>

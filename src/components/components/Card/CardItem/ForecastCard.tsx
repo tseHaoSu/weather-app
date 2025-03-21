@@ -62,9 +62,8 @@ const ForecastCard = () => {
               axisLine={false}
               tickMargin={5}
               tickFormatter={(value) => {
-                const hour = value % 12 === 0 ? 12 : value % 12;
-                const ampm = value < 12 ? "AM" : "PM";
-                return `${hour} ${ampm}`;
+                
+                return `+${value}`;
               }}
             />
             <ChartTooltip

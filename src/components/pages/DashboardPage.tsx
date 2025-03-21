@@ -1,7 +1,6 @@
 import ForecastCard from "../components/Card/CardItem/ForecastCard";
 import LocationCard from "../components/Card/CardItem/LocationCard";
 import RiskCard from "../components/Card/CardItem/RiskCard";
-import TempForecastCard from "../components/Card/CardItem/TempForecastCard";
 import CardContainer from "../components/Card/Container/CardContainer";
 
 const DashboardPage = () => {
@@ -19,9 +18,6 @@ const DashboardPage = () => {
           </CardContainer>
           <CardContainer className="p-0 col-span-3">
             <ForecastCard />
-          </CardContainer>
-          <CardContainer className="p-0 col-span-3">
-            <TempForecastCard/>
           </CardContainer>
         </div>
         {/* Forecast and map */}

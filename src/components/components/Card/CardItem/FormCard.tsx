@@ -26,7 +26,7 @@ import {
 import useInputQueryStore from "@/store/store";
 import { ArrowDown, MapPin } from "lucide-react";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 interface FormProps {
@@ -40,7 +40,6 @@ const CardWithForm = () => {
   const setUVIndex = useInputQueryStore((state) => state.setUVIndex);
   const setMaxUVIndex = useInputQueryStore((state) => state.setMaxUV);
   const location = useInputQueryStore((state) => state.inputQuery.location);
-  const storedUVIndex = useInputQueryStore((state) => state.inputQuery.UVIndex);
   const [localLocation, setLocalLocation] = useState(location);
   const coordinates =
     location && locationCoordinates[location]
@@ -69,12 +68,6 @@ const CardWithForm = () => {
     if (uvData && uvData.result) return Number(uvData.result.uv.toFixed(1)); // Default UV index
   };
 
-  const getOpenUVMaxIndex = () => {
-    if (isLoading) return "Loading...";
-    if (error) return error;
-    if (uvData && uvData.result) return Number(uvData.result.uv_max.toFixed(1));
-  };
-
   //Open UV API
   // const getMaxUVIndex = () => {
   //   if (isLoading) return "Loading...";
@@ -101,23 +94,11 @@ const CardWithForm = () => {
   //   return "nothing";
   // };
 
-  const OpenUVIndex = getOpenUVIndex();
   // const maxUVIndex = getMaxUVIndex();
   // const weatherUV = getOpenWeatherUVIndex();
   // const hourlyWeatherUV = getHourlyWeatherUVIndex();
   // console.log(currentUVIndex, maxUVIndex, weatherUV, hourlyWeatherUV);
-
-  const OpenUVMaxIndex = getOpenUVMaxIndex();
-
-  useEffect(() => {
-    if (typeof OpenUVIndex === "number" && OpenUVIndex !== storedUVIndex) {
-      setUVIndex(OpenUVIndex);
-    }
-    if (typeof OpenUVMaxIndex === "number") {
-      setMaxUVIndex(OpenUVMaxIndex);
-    }
-  }, [OpenUVIndex, storedUVIndex, setUVIndex, OpenUVMaxIndex, setMaxUVIndex]);
-
+  const OpenUVIndex = getOpenUVIndex();
   const numericUVIndex =
     typeof OpenUVIndex === "number" ? OpenUVIndex : DEFAULT_UV_INDEX;
 
@@ -133,110 +114,117 @@ const CardWithForm = () => {
     };
     setLocation(formData.location ?? "");
 
-    toast.success("Form submitted successfully!", {
-      description: `${localLocation} is your location.`,
-    });
-  };
+    if (uvData && uvData.result) {
+      const newUVIndex = Number(uvData.result.uv.toFixed(1));
+      const newMaxUVIndex = Number(uvData.result.uv_max.toFixed(1));
+      setUVIndex(newUVIndex);
+      setMaxUVIndex(newMaxUVIndex);
 
-  const handleClearStore = () => {
-    // Reset all values in the store
-    setName("");
-    setSkinType("");
-    setLocation("");
-    setUVIndex(DEFAULT_UV_INDEX);
+      toast.success("Form submitted successfully!", {
+        description: `${localLocation} is your location.`,
+      });
+    }
+  }
 
-    toast.info("All data cleared", {
-      description: "Your preferences have been reset.",
-    });
-  };
+    //clear store
+    const handleClearStore = () => {
+      setName("");
+      setSkinType("");
+      setLocation("");
+      setUVIndex(DEFAULT_UV_INDEX);
 
-  return (
-    <Card className="w-full flex flex-col rounded-xl bg-muted/50 ">
-      <CardHeader>
-        <CardTitle>UV Index Checker</CardTitle>
-        <CardDescription>
-          Enter your location to get your current UV index!
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form id="user-form" onSubmit={handleSubmit} className="mb-3">
-          <div className="flex flex-row w-full items-start gap-2">
-            <div className="flex flex-row space-x-2 mt-3">
-              <Label htmlFor="location">My Location</Label>
-              <Select value={localLocation} onValueChange={setLocalLocation}>
-                <SelectTrigger
-                  id="location"
-                  className="border-2 border-blue-400 "
+      toast.info("All data cleared", {
+        description: "Your preferences have been reset.",
+      });
+    };
+
+    return (
+      <Card className="w-full flex flex-col rounded-xl bg-muted/50 ">
+        <CardHeader>
+          <CardTitle>UV Index Checker</CardTitle>
+          <CardDescription>
+            Enter your location to get your current UV index!
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form id="user-form" onSubmit={handleSubmit} className="mb-3">
+            <div className="flex flex-row w-full items-start gap-2">
+              <div className="flex flex-row space-x-2 mt-3">
+                <Label htmlFor="location">My Location</Label>
+                <Select value={localLocation} onValueChange={setLocalLocation}>
+                  <SelectTrigger
+                    id="location"
+                    className="border-2 border-blue-400 "
+                  >
+                    <SelectValue placeholder="Select" />
+                  </SelectTrigger>
+                  <SelectContent position="popper">
+                    <SelectItem value="Sydney">Sydney</SelectItem>
+                    <SelectItem value="Melbourne">Melbourne</SelectItem>
+                    <SelectItem value="Brisbane">Brisbane</SelectItem>
+                    <SelectItem value="Perth">Perth</SelectItem>
+                    <SelectItem value="Adelaide">Adelaide</SelectItem>
+                    <SelectItem value="Gold Coast">Gold Coast</SelectItem>
+                    <SelectItem value="Canberra">Canberra</SelectItem>
+                    <SelectItem value="Newcastle">Newcastle</SelectItem>
+                    <SelectItem value="Wollongong">Wollongong</SelectItem>
+                    <SelectItem value="Hobart">Hobart</SelectItem>
+                    <SelectItem value="Darwin">Darwin</SelectItem>
+                    <SelectItem value="Cairns">Cairns</SelectItem>
+                    <SelectItem value="Alice Springs">Alice Springs</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Button
+                  className="border-2 border-blue-400  bg-sky-500"
+                  type="submit"
+                  form="user-form"
                 >
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="Sydney">Sydney</SelectItem>
-                  <SelectItem value="Melbourne">Melbourne</SelectItem>
-                  <SelectItem value="Brisbane">Brisbane</SelectItem>
-                  <SelectItem value="Perth">Perth</SelectItem>
-                  <SelectItem value="Adelaide">Adelaide</SelectItem>
-                  <SelectItem value="Gold Coast">Gold Coast</SelectItem>
-                  <SelectItem value="Canberra">Canberra</SelectItem>
-                  <SelectItem value="Newcastle">Newcastle</SelectItem>
-                  <SelectItem value="Wollongong">Wollongong</SelectItem>
-                  <SelectItem value="Hobart">Hobart</SelectItem>
-                  <SelectItem value="Darwin">Darwin</SelectItem>
-                  <SelectItem value="Cairns">Cairns</SelectItem>
-                  <SelectItem value="Alice Springs">Alice Springs</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button
-                className="border-2 border-blue-400  bg-sky-500"
-                type="submit"
-                form="user-form"
-              >
-                Submit
-              </Button>
+                  Submit
+                </Button>
+              </div>
+              <h1 className="text-5xl mx-4 font-medium">or</h1>
+              <div className="flex flex-col space-y-2">
+                <Button className="border-2 border-blue-400 mt-3 bg-sky-500">
+                  get my location
+                  <MapPin size={24} />
+                </Button>
+              </div>
             </div>
-            <h1 className="text-5xl mx-4 font-medium">or</h1>
-            <div className="flex flex-col space-y-2">
-              <Button className="border-2 border-blue-400 mt-3 bg-sky-500">
-                get my location
-                <MapPin size={24} />
-              </Button>
+          </form>
+          <div className="mt-15">
+            <ArrowDown
+              size={24}
+              className="text-red-500"
+              strokeWidth={3}
+              style={{ marginLeft: `${numericUVIndex * 5.4}rem` }}
+            />
+            <img src={indexImage} alt="index" className="w-full h-full" />
+          </div>
+          <div className="flex flex-row items-center gap-8 mt-4">
+            <div className="flex flex-col">
+              <h1 className="text-3xl mx-4 font-medium">
+                Current UV Index level: {numericUVIndex}
+              </h1>
+              <h1 className="text-3xl mx-4 font-medium">
+                My location: {location}
+              </h1>
             </div>
+            <div
+              className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg"
+              style={{ backgroundColor: getUVcolor(numericUVIndex) }}
+            >
+              {numericUVIndex}
+            </div>
+            <Button
+              className="border-2 border-blue-400 mt-3 bg-sky-500"
+              onClick={handleClearStore}
+            >
+              Clear
+            </Button>
           </div>
-        </form>
-        <div className="mt-15">
-          <ArrowDown
-            size={24}
-            className="text-red-500"
-            strokeWidth={3}
-            style={{ marginLeft: `${numericUVIndex * 5.4}rem` }}
-          />
-          <img src={indexImage} alt="index" className="w-full h-full" />
-        </div>
-        <div className="flex flex-row items-center gap-8 mt-4">
-          <div className="flex flex-col">
-            <h1 className="text-3xl mx-4 font-medium">
-              Current UV Index level: {numericUVIndex}
-            </h1>
-            <h1 className="text-3xl mx-4 font-medium">
-              My location: {location}
-            </h1>
-          </div>
-          <div
-            className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg"
-            style={{ backgroundColor: getUVcolor(numericUVIndex) }}
-          >
-            {numericUVIndex}
-          </div>
-          <Button
-            className="border-2 border-blue-400 mt-3 bg-sky-500"
-            onClick={handleClearStore}
-          >
-            Clear
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+        </CardContent>
+      </Card>
+    );
+  };
 
 export default CardWithForm;

@@ -126,16 +126,755 @@ export const UVPreventionTips: { [key: string]: string } = {
 
   "Be Extra Cautious Around Water, Snow, and Sand":
     "These surfaces can reflect and intensify UV radiation, increasing your exposure. Snow can reflect up to 80% of UV rays, water about 10-30%, and dry beach sand about 15-30%. This means you can get significant UV exposure even while in shade near these reflective surfaces. Wear extra protection, use higher SPF sunscreen, and reapply more frequently when around these environments.",
-
-  "Protect Children Diligently":
-    "Children's skin is more sensitive to UV damage, and early sun exposure increases lifetime skin cancer risk. Keep infants under 6 months out of direct sunlight completely. For older children, use clothing, hats, and shade as primary protection, with sunscreen on exposed areas. Teach children sun-safe habits early, including the importance of reapplying sunscreen. Schedule outdoor activities before 10am or after 4pm when possible. School uniforms and playground areas should incorporate sun protection considerations.",
-
-  "Avoid Tanning Beds":
-    "Tanning beds emit UVA rays at levels up to 12 times higher than natural sunlight and significantly increase skin cancer risk. The World Health Organization classifies them as carcinogenic. There is no such thing as a 'safe tan' from UV exposure, whether from tanning beds or natural sunlight. If you desire a tanned appearance, consider sunless tanning products like sprays or lotions containing dihydroxyacetone (DHA), but remember these do not provide UV protection.",
-
-  "Take Extra Precautions with Medications":
-    "Some medications can increase sun sensitivity (photosensitivity), including certain antibiotics, antihistamines, retinoids, and some heart and diabetes medications. Check with your healthcare provider or pharmacist about whether any medications you take might increase sun sensitivity, and take additional protective measures if necessary. Photosensitivity reactions can occur within minutes or hours of sun exposure and may look like exaggerated sunburns or allergic reactions.",
-
-  "Remember Year-Round Protection":
-    "UV radiation is present year-round, not just during summer months. In winter, UV rays reflect off snow and can cause significant exposure at high altitudes. Even on overcast days, up to 80% of UV rays can penetrate cloud cover. Make sun protection a daily habit regardless of season, especially for exposed areas like the face and hands. In tropical and subtropical regions, UV levels remain high throughout the year.",
 };
+
+export const CasesData = [
+  {
+    year: "2015",
+    NewSouthWales: 5858,
+    Queensland: 4606,
+    SouthAustralia: 1031,
+    Tasmania: 410,
+    Victoria: 3469,
+    WesternAustralia: 2047,
+  },
+  {
+    year: "2016",
+    NewSouthWales: 6117,
+    Queensland: 4781,
+    SouthAustralia: 1066,
+    Tasmania: 410,
+    Victoria: 3538,
+    WesternAustralia: 1990,
+  },
+  {
+    year: "2017",
+    NewSouthWales: 6352,
+    Queensland: 4974,
+    SouthAustralia: 1030,
+    Tasmania: 437,
+    Victoria: 3740,
+    WesternAustralia: 1851,
+  },
+  {
+    year: "2018",
+    NewSouthWales: 6475,
+    Queensland: 4917,
+    SouthAustralia: 1038,
+    Tasmania: 531,
+    Victoria: 3760,
+    WesternAustralia: 1874,
+  },
+  {
+    year: "2019",
+    NewSouthWales: 6581,
+    Queensland: 5359,
+    SouthAustralia: 1181,
+    Tasmania: 533,
+    Victoria: 3641,
+    WesternAustralia: 2022,
+  },
+  {
+    year: "2020",
+    NewSouthWales: 6535,
+    Queensland: 5073,
+    SouthAustralia: 1179,
+    Tasmania: 555,
+    Victoria: 3454,
+    WesternAustralia: 1845,
+  },
+];
+
+export const HistoryUVData = {
+  Adelaide: [
+    {
+      month: "January",
+      uv_index: 7.772829896819861,
+    },
+    {
+      month: "February",
+      uv_index: 6.919287694179986,
+    },
+    {
+      month: "March",
+      uv_index: 5.082773254463923,
+    },
+    {
+      month: "April",
+      uv_index: 3.091429959371136,
+    },
+    {
+      month: "May",
+      uv_index: 1.639915855948114,
+    },
+    {
+      month: "June",
+      uv_index: 1.1767234629836776,
+    },
+    {
+      month: "July",
+      uv_index: 1.2719813006651999,
+    },
+    {
+      month: "August",
+      uv_index: 1.9280690263432267,
+    },
+    {
+      month: "September",
+      uv_index: 3.1691284382208917,
+    },
+    {
+      month: "October",
+      uv_index: 4.53955282707048,
+    },
+    {
+      month: "November",
+      uv_index: 6.076664705421693,
+    },
+    {
+      month: "December",
+      uv_index: 7.3661903969079,
+    },
+  ],
+  "Alice Springs": [
+    {
+      month: "January",
+      uv_index: 8.649809859028837,
+    },
+    {
+      month: "February",
+      uv_index: 9.014463633487768,
+    },
+    {
+      month: "March",
+      uv_index: 7.462367618273982,
+    },
+    {
+      month: "April",
+      uv_index: 5.527365230208293,
+    },
+    {
+      month: "May",
+      uv_index: 3.827172504853417,
+    },
+    {
+      month: "June",
+      uv_index: 2.9642369110619975,
+    },
+    {
+      month: "July",
+      uv_index: 3.374077957631882,
+    },
+    {
+      month: "August",
+      uv_index: 4.570756272401433,
+    },
+    {
+      month: "September",
+      uv_index: 5.803173985890653,
+    },
+    {
+      month: "October",
+      uv_index: 7.060871479774705,
+    },
+    {
+      month: "November",
+      uv_index: 7.5649142020147675,
+    },
+    {
+      month: "December",
+      uv_index: 8.24503163935143,
+    },
+  ],
+  Brisbane: [
+    {
+      month: "January",
+      uv_index: 7.18875672974048,
+    },
+    {
+      month: "February",
+      uv_index: 6.494571523499401,
+    },
+    {
+      month: "March",
+      uv_index: 5.024581282284265,
+    },
+    {
+      month: "April",
+      uv_index: 3.8365385555854483,
+    },
+    {
+      month: "May",
+      uv_index: 2.668598936899863,
+    },
+    {
+      month: "June",
+      uv_index: 2.0567176233490603,
+    },
+    {
+      month: "July",
+      uv_index: 2.290939100528864,
+    },
+    {
+      month: "August",
+      uv_index: 3.177505888376856,
+    },
+    {
+      month: "September",
+      uv_index: 4.217435160085637,
+    },
+    {
+      month: "October",
+      uv_index: 5.031045329800578,
+    },
+    {
+      month: "November",
+      uv_index: 6.1590375435226665,
+    },
+    {
+      month: "December",
+      uv_index: 6.736506034021532,
+    },
+  ],
+  Canberra: [
+    {
+      month: "January",
+      uv_index: 6.582143391890658,
+    },
+    {
+      month: "February",
+      uv_index: 6.249163199523248,
+    },
+    {
+      month: "March",
+      uv_index: 4.498274957893804,
+    },
+    {
+      month: "April",
+      uv_index: 2.838048115315251,
+    },
+    {
+      month: "May",
+      uv_index: 1.651394018891381,
+    },
+    {
+      month: "June",
+      uv_index: 1.0958682978475125,
+    },
+    {
+      month: "July",
+      uv_index: 1.2606993096336987,
+    },
+    {
+      month: "August",
+      uv_index: 1.87494743130227,
+    },
+    {
+      month: "September",
+      uv_index: 3.031377758069191,
+    },
+    {
+      month: "October",
+      uv_index: 4.261052178309484,
+    },
+    {
+      month: "November",
+      uv_index: 5.577097971781305,
+    },
+    {
+      month: "December",
+      uv_index: 6.581811945836356,
+    },
+  ],
+  Darwin: [
+    {
+      month: "January",
+      uv_index: 6.935637938502987,
+    },
+    {
+      month: "February",
+      uv_index: 7.373782683074799,
+    },
+    {
+      month: "March",
+      uv_index: 7.412554854944953,
+    },
+    {
+      month: "April",
+      uv_index: 6.726766804749609,
+    },
+    {
+      month: "May",
+      uv_index: 5.731873120149847,
+    },
+    {
+      month: "June",
+      uv_index: 5.062018732468659,
+    },
+    {
+      month: "July",
+      uv_index: 5.4203961942855345,
+    },
+    {
+      month: "August",
+      uv_index: 6.399941291401756,
+    },
+    {
+      month: "September",
+      uv_index: 7.255204141631542,
+    },
+    {
+      month: "October",
+      uv_index: 7.525301722238599,
+    },
+    {
+      month: "November",
+      uv_index: 7.347686703420091,
+    },
+    {
+      month: "December",
+      uv_index: 6.87960452683362,
+    },
+  ],
+  Emerald: [
+    {
+      month: "January",
+      uv_index: 8.0447910906298,
+    },
+    {
+      month: "February",
+      uv_index: 8.14666455962916,
+    },
+    {
+      month: "March",
+      uv_index: 6.968189132104454,
+    },
+    {
+      month: "April",
+      uv_index: 5.079412301587301,
+    },
+    {
+      month: "May",
+      uv_index: 3.6493291433508888,
+    },
+    {
+      month: "June",
+      uv_index: 2.9185982142857143,
+    },
+    {
+      month: "July",
+      uv_index: 3.059494453833027,
+    },
+    {
+      month: "August",
+      uv_index: 4.3285028186192775,
+    },
+    {
+      month: "September",
+      uv_index: 5.552469523809524,
+    },
+    {
+      month: "October",
+      uv_index: 6.5976536098310286,
+    },
+    {
+      month: "November",
+      uv_index: 7.010489682539682,
+    },
+    {
+      month: "December",
+      uv_index: 7.947986789554532,
+    },
+  ],
+  "Gold Coast": [
+    {
+      month: "January",
+      uv_index: 7.44981182795699,
+    },
+    {
+      month: "February",
+      uv_index: 6.5586563816508034,
+    },
+    {
+      month: "March",
+      uv_index: 5.284255806693307,
+    },
+    {
+      month: "April",
+      uv_index: 3.9776205077825617,
+    },
+    {
+      month: "May",
+      uv_index: 2.629275249510491,
+    },
+    {
+      month: "June",
+      uv_index: 2.0770619047619046,
+    },
+    {
+      month: "July",
+      uv_index: 2.2156032485464374,
+    },
+    {
+      month: "August",
+      uv_index: 3.1243968150732178,
+    },
+    {
+      month: "September",
+      uv_index: 4.155997222222222,
+    },
+    {
+      month: "October",
+      uv_index: 4.975883640552995,
+    },
+    {
+      month: "November",
+      uv_index: 6.04521929834659,
+    },
+    {
+      month: "December",
+      uv_index: 6.717097926267281,
+    },
+  ],
+  Kingston: [
+    {
+      month: "January",
+      uv_index: 5.930385949915186,
+    },
+    {
+      month: "February",
+      uv_index: 4.879200488557275,
+    },
+    {
+      month: "March",
+      uv_index: 3.3207850274981086,
+    },
+    {
+      month: "April",
+      uv_index: 1.778182612558845,
+    },
+    {
+      month: "May",
+      uv_index: 0.8093950272334636,
+    },
+    {
+      month: "June",
+      uv_index: 0.5416472316108102,
+    },
+    {
+      month: "July",
+      uv_index: 0.6468273885959638,
+    },
+    {
+      month: "August",
+      uv_index: 1.091397437343034,
+    },
+    {
+      month: "September",
+      uv_index: 1.9396604497462562,
+    },
+    {
+      month: "October",
+      uv_index: 3.152854250016634,
+    },
+    {
+      month: "November",
+      uv_index: 4.494038223776641,
+    },
+    {
+      month: "December",
+      uv_index: 5.839339819081754,
+    },
+  ],
+  Melbourne: [
+    {
+      month: "January",
+      uv_index: 6.581587834568227,
+    },
+    {
+      month: "February",
+      uv_index: 5.732826759498832,
+    },
+    {
+      month: "March",
+      uv_index: 4.07647687318655,
+    },
+    {
+      month: "April",
+      uv_index: 2.383043812463257,
+    },
+    {
+      month: "May",
+      uv_index: 1.2795557960707875,
+    },
+    {
+      month: "June",
+      uv_index: 0.9064381944586941,
+    },
+    {
+      month: "July",
+      uv_index: 0.9788245378091578,
+    },
+    {
+      month: "August",
+      uv_index: 1.4803461442775276,
+    },
+    {
+      month: "September",
+      uv_index: 2.497018565434506,
+    },
+    {
+      month: "October",
+      uv_index: 3.7168045001924734,
+    },
+    {
+      month: "November",
+      uv_index: 4.828272106352653,
+    },
+    {
+      month: "December",
+      uv_index: 6.329559831858974,
+    },
+  ],
+  Newcastle: [
+    {
+      month: "January",
+      uv_index: 7.256526085046663,
+    },
+    {
+      month: "February",
+      uv_index: 6.638971755686329,
+    },
+    {
+      month: "March",
+      uv_index: 4.803342635236804,
+    },
+    {
+      month: "April",
+      uv_index: 3.3284530864197532,
+    },
+    {
+      month: "May",
+      uv_index: 2.05440435775311,
+    },
+    {
+      month: "June",
+      uv_index: 1.3464225783290842,
+    },
+    {
+      month: "July",
+      uv_index: 1.5727613354547516,
+    },
+    {
+      month: "August",
+      uv_index: 2.275992005565426,
+    },
+    {
+      month: "September",
+      uv_index: 3.494265784832452,
+    },
+    {
+      month: "October",
+      uv_index: 4.691778204471753,
+    },
+    {
+      month: "November",
+      uv_index: 5.933798412698414,
+    },
+    {
+      month: "December",
+      uv_index: 6.691345884021635,
+    },
+  ],
+  Perth: [
+    {
+      month: "January",
+      uv_index: 8.557427924473176,
+    },
+    {
+      month: "February",
+      uv_index: 7.5901941855678015,
+    },
+    {
+      month: "March",
+      uv_index: 5.539084929458084,
+    },
+    {
+      month: "April",
+      uv_index: 3.5519178712222166,
+    },
+    {
+      month: "May",
+      uv_index: 2.133702832535701,
+    },
+    {
+      month: "June",
+      uv_index: 1.5139042111713683,
+    },
+    {
+      month: "July",
+      uv_index: 1.581683679100532,
+    },
+    {
+      month: "August",
+      uv_index: 2.325400426740628,
+    },
+    {
+      month: "September",
+      uv_index: 3.587208287746988,
+    },
+    {
+      month: "October",
+      uv_index: 5.135476503852636,
+    },
+    {
+      month: "November",
+      uv_index: 6.898722463428406,
+    },
+    {
+      month: "December",
+      uv_index: 8.35178165852332,
+    },
+  ],
+  Sydney: [
+    {
+      month: "January",
+      uv_index: 6.77328668392432,
+    },
+    {
+      month: "February",
+      uv_index: 6.283289367609758,
+    },
+    {
+      month: "March",
+      uv_index: 4.456160654713446,
+    },
+    {
+      month: "April",
+      uv_index: 3.0488703703703703,
+    },
+    {
+      month: "May",
+      uv_index: 1.900752432155658,
+    },
+    {
+      month: "June",
+      uv_index: 1.287516328694479,
+    },
+    {
+      month: "July",
+      uv_index: 1.5039332602038422,
+    },
+    {
+      month: "August",
+      uv_index: 2.193426779313876,
+    },
+    {
+      month: "September",
+      uv_index: 3.36509982642249,
+    },
+    {
+      month: "October",
+      uv_index: 4.497050514780969,
+    },
+    {
+      month: "November",
+      uv_index: 5.642523228428125,
+    },
+    {
+      month: "December",
+      uv_index: 6.380379536828753,
+    },
+  ],
+  Townsville: [
+    {
+      month: "January",
+      uv_index: 7.669495148512211,
+    },
+    {
+      month: "February",
+      uv_index: 7.7648372072082505,
+    },
+    {
+      month: "March",
+      uv_index: 6.921959530593004,
+    },
+    {
+      month: "April",
+      uv_index: 5.557695024666253,
+    },
+    {
+      month: "May",
+      uv_index: 4.1630599599052305,
+    },
+    {
+      month: "June",
+      uv_index: 3.5187179095380916,
+    },
+    {
+      month: "July",
+      uv_index: 3.8585939580133126,
+    },
+    {
+      month: "August",
+      uv_index: 5.030637843382164,
+    },
+    {
+      month: "September",
+      uv_index: 6.278832404204696,
+    },
+    {
+      month: "October",
+      uv_index: 7.186052757793765,
+    },
+    {
+      month: "November",
+      uv_index: 7.794455318982093,
+    },
+    {
+      month: "December",
+      uv_index: 7.930500289580601,
+    },
+  ],
+};
+
+
+interface UVRecord {
+  month: string;
+  uv_index: number;
+}
+
+interface ChartDataEntry {
+  month: string;
+  [city: string]: string | number;
+}
+
+
+interface UVDataSet {
+  [city: string]: UVRecord[];
+}
+export function transformUVData(uvData: UVDataSet, months = 6) {
+  // Extract just the first X months (January to June by default)
+  const result = [];
+  // Get all city names
+  const cities = Object.keys(uvData);
+  
+  // Process only the requested number of months
+  for (let i = 0; i < months; i++) {
+    // Get the current month data for the first city to determine month name
+    const monthName = uvData[cities[0]][i].month;
+    
+    // Create the month entry with explicit typing to allow index access
+    const monthData: ChartDataEntry = { month: monthName };
+    
+    // Add data for each city
+    cities.forEach(city => {
+      // Round UV index to 1 decimal place for cleaner visualization
+      monthData[city] = parseFloat(uvData[city][i].uv_index.toFixed(1));
+    });
+    
+    result.push(monthData);
+  }
+  
+  return result;
+}

@@ -33,7 +33,7 @@ const TempForecastCard = () => {
   const chartData = weatherData?.hourly.slice(0, 24).map((hourData, index) => {
     return {
       hour: index,
-      uvi: hourData.humidity,
+      humidity: hourData.humidity,
     };
   });
 
@@ -81,7 +81,7 @@ const TempForecastCard = () => {
               content={<ChartTooltipContent indicator="line" />}
             />
             <Area
-              dataKey="uvi"
+              dataKey="humidity"
               type="natural"
               fill="hsl(200, 100%, 50%)"
               fillOpacity={0.4}

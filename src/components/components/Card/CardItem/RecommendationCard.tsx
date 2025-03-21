@@ -180,7 +180,7 @@ const RecommendationCard = () => {
                       <p className="text-white font-medium">
                         Current UV Index:
                       </p>
-                      <p className="text-white font-bold">{roundedUVIndex}</p>
+                      <p className="text-white font-bold">{currentUV}</p>
                     </div>
                     <div className="flex justify-between">
                       <p className="text-white font-medium">UV Factor:</p>
