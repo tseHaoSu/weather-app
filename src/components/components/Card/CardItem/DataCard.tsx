@@ -1,6 +1,7 @@
 import CardContainer from "../Container/CardContainer";
 import CancerCaseCard from "./CancerCaseCard";
 import ForecastCard from "./ForecastCard";
+import HistoryUVCard from "./HistoryUVCard";
 import TempForecastCard from "./TempForecastCard";
 
 const DataCard = () => {
@@ -16,6 +17,9 @@ const DataCard = () => {
         </CardContainer>
         <CardContainer className="p-0 col-span-3">
           <CancerCaseCard />
+        </CardContainer>
+        <CardContainer className="p-0 col-span-3">
+          <HistoryUVCard />
         </CardContainer>
       </div>
       {/* Forecast and map */}

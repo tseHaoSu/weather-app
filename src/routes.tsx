@@ -8,6 +8,7 @@ import UVIndexPage from "./components/pages/UVIndexPage";
 import RecommendationPage from "./components/pages/RecommendationPage";
 import ReminderPage from "./components/pages/ReminderPage";
 import UVTipsPage from "./components/pages/UVTipsPage";
+import TestPage from "./components/pages/TestPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "uv-insights", element: <UVTipsPage /> },
       { path: "recommendation", element: <RecommendationPage /> },
       { path: "reminder", element: <ReminderPage /> },
+      {path: "test", element: <TestPage/>}
     ],
   },
 ]);

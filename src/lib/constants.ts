@@ -185,7 +185,16 @@ export const CasesData = [
   },
 ];
 
-export const HistoryUVData = {
+type CityData = {
+  month: string;
+  uv_index: number;
+}
+
+type HistoryUVData = {
+  [key: string]: CityData[]
+}
+
+export const HistoryUVData: HistoryUVData = {
   Adelaide: [
     {
       month: "January",
@@ -486,8 +495,8 @@ export const HistoryUVData = {
       uv_index: 7.947986789554532,
     },
   ],
-  "Gold Coast": [
-    {
+  GoldCoast: [
+   {
       month: "January",
       uv_index: 7.44981182795699,
     },
@@ -839,42 +848,3 @@ export const HistoryUVData = {
 };
 
 
-interface UVRecord {
-  month: string;
-  uv_index: number;
-}
-
-interface ChartDataEntry {
-  month: string;
-  [city: string]: string | number;
-}
-
-
-interface UVDataSet {
-  [city: string]: UVRecord[];
-}
-export function transformUVData(uvData: UVDataSet, months = 6) {
-  // Extract just the first X months (January to June by default)
-  const result = [];
-  // Get all city names
-  const cities = Object.keys(uvData);
-  
-  // Process only the requested number of months
-  for (let i = 0; i < months; i++) {
-    // Get the current month data for the first city to determine month name
-    const monthName = uvData[cities[0]][i].month;
-    
-    // Create the month entry with explicit typing to allow index access
-    const monthData: ChartDataEntry = { month: monthName };
-    
-    // Add data for each city
-    cities.forEach(city => {
-      // Round UV index to 1 decimal place for cleaner visualization
-      monthData[city] = parseFloat(uvData[city][i].uv_index.toFixed(1));
-    });
-    
-    result.push(monthData);
-  }
-  
-  return result;
-}

@@ -38,7 +38,7 @@ const items = [
     icon: Table,
   },
   {
-    title: "UV Insights",
+    title: "UV Prevention Tips",
     url: "/uv-insights",
     icon: Info,
   },
