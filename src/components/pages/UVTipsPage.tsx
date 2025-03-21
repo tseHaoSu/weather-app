@@ -15,7 +15,7 @@ const UVTipsPage = () => {
 
   return (
     <>
-      <h1 className="text-5xl mx-auto p-4 font-bold">UV Prevention Info</h1>
+      <h1 className="text-5xl mx-auto p-4 font-bold">UV Prevention Tips</h1>
       {rows.map((row, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex flex-wrap mb-4">
           {row.map(([title, content], colIndex) => (
