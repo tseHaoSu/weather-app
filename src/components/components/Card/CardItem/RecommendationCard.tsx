@@ -188,7 +188,10 @@ const RecommendationCard = () => {
                     </div>
                     <div className="flex justify-between">
                       <p className="text-white font-medium">Sunscreen Amount</p>
-                      <p className="text-white font-bold">{TotalSunScreen}</p>
+                      <p className="text-white font-bold">
+                        {TotalSunScreen}{" "}
+                        <span>teaspoons</span>
+                      </p>
                     </div>
                   </div>
                 </div>

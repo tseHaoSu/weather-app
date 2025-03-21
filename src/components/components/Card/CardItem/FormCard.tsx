@@ -180,15 +180,16 @@ const CardWithForm = () => {
                   form="user-form"
                 >
                   Submit
+                  <MapPin size={24} />
                 </Button>
               </div>
-              <h1 className="text-5xl mx-4 font-medium">or</h1>
+              {/* <h1 className="text-5xl mx-4 font-medium">or</h1>
               <div className="flex flex-col space-y-2">
                 <Button className="border-2 border-blue-400 mt-3 bg-sky-500">
                   get my location
                   <MapPin size={24} />
                 </Button>
-              </div>
+              </div> */}
             </div>
           </form>
           <div className="mt-15">
