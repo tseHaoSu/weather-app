@@ -127,7 +127,7 @@ const HistoryUVCard = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 leading-relaxed mt-2 text-muted-foreground">
-              Monthly UV indices
+              Monthly Average UV Index
             </div>
           </div>
         </div>
