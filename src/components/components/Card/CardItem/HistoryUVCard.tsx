@@ -35,41 +35,77 @@ const HistoryUVCard = () => {
 
   // Map cities to their respective states for the chart config
 
-  const chartConfig = {
-    Perth: {
-      label: "Perth (Western Australia)",
-      color: "hsl(280, 90%, 60%)",
-    },
-    Melbourne: {
-      label: "Melbourne (Victoria)",
-      color: "hsl(200, 90%, 50%)",
-    },
-    Hobart: {
-      label: "Hobart (Tasmania)",
-      color: "hsl(160, 90%, 45%)",
-    },
-    Adelaide: {
-      label: "Adelaide (South Australia)",
-      color: "hsl(120, 90%, 40%)",
-    },
-    Brisbane: {
-      label: "Brisbane (Queensland)",
-      color: "hsl(40, 90%, 55%)",
-    },
-    Sydney: {
-      label: "Sydney (New South Wales)",
-      color: "hsl(0, 90%, 60%)",
-    },
-  } satisfies ChartConfig;
+ const chartConfig = {
+   Adelaide: {
+     label: "Adelaide (South Australia)",
+     color: "hsl(260, 90%, 60%)",
+   },
+   Alice_Springs: {
+     label: "Alice Springs (Northern Territory)",
+     color: "hsl(0, 90%, 60%)",
+   },
+   Brisbane: {
+     label: "Brisbane (Queensland)",
+     color: "hsl(145, 90%, 45%)",
+   },
+   Canberra: {
+     label: "Canberra (Australian Capital Territory)",
+     color: "hsl(280, 90%, 60%)",
+   },
+   Darwin: {
+     label: "Darwin (Northern Territory)",
+     color: "hsl(30, 90%, 60%)",
+   },
+   Emerald: {
+     label: "Emerald (Queensland)",
+     color: "hsl(180, 90%, 50%)",
+   },
+   Gold_Coast: {
+     label: "Gold Coast (Queensland)",
+     color: "hsl(340, 90%, 60%)",
+   },
+   Kingston: {
+     label: "Kingston (Tasmania)",
+     color: "hsl(120, 90%, 75%)",
+   },
+   Melbourne: {
+     label: "Melbourne (Victoria)",
+     color: "hsl(300, 90%, 70%)",
+   },
+   Newcastle: {
+     label: "Newcastle (New South Wales)",
+     color: "hsl(50, 90%, 60%)",
+   },
+   Perth: {
+     label: "Perth (Western Australia)",
+     color: "hsl(240, 90%, 60%)",
+   },
+   Sydney: {
+     label: "Sydney (New South Wales)",
+     color: "hsl(15, 90%, 60%)",
+   },
+   Townsville: {
+     label: "Townsville (Queensland)",
+     color: "hsl(160, 90%, 45%)",
+   },
+ } satisfies ChartConfig;
 
-  // Select key cities to display from your data
-  const displayCities = [
-    "Perth",
-    "Melbourne",
-    "Adelaide",
-    "Brisbane",
-    "Sydney",
-  ];
+ // Updated displayCities array with all cities
+ const displayCities = [
+   "Adelaide",
+   "Alice_Springs",
+   "Brisbane",
+   "Canberra",
+   "Darwin",
+   "Emerald",
+   "Gold_Coast",
+   "Kingston",
+   "Melbourne",
+   "Newcastle",
+   "Perth",
+   "Sydney",
+   "Townsville",
+ ];
 
   return (
     <Card>
@@ -127,7 +163,7 @@ const HistoryUVCard = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 leading-relaxed mt-2 text-muted-foreground">
-              Monthly Average UV Index
+              Average UV Index by Month Over the Last Five Years in Each City
             </div>
           </div>
         </div>
