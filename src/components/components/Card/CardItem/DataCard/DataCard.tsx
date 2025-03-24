@@ -1,4 +1,4 @@
-import CardContainer from "../Container/CardContainer";
+import CardContainer from "../../Container/CardContainer";
 import CancerCaseCard from "./CancerCaseCard";
 import ForecastCard from "./ForecastCard";
 import HistoryUVCard from "./HistoryUVCard";

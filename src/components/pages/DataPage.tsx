@@ -1,5 +1,5 @@
 // Import the images directly
-import DataCard from "../components/Card/CardItem/DataCard";
+import DataCard from "../components/Card/CardItem/DataCard/DataCard";
 
 const DataPage = () => {
   // Use the imported image variables
@@ -7,7 +7,7 @@ const DataPage = () => {
     <>
       <h1 className="text-5xl mx-auto p-4 font-bold">Data Trends</h1>
       <DataCard />
-      </>
+    </>
   );
 };
 

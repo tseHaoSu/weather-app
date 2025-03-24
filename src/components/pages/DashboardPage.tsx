@@ -1,4 +1,4 @@
-import ForecastCard from "../components/Card/CardItem/ForecastCard";
+import ForecastCard from "../components/Card/CardItem/DataCard/ForecastCard";
 import LocationCard from "../components/Card/CardItem/LocationCard";
 import RiskCard from "../components/Card/CardItem/RiskCard";
 import CardContainer from "../components/Card/Container/CardContainer";
